@@ -25,7 +25,8 @@ $routes->get('admin/adduser', 'Admin\AdminController::addUser');
 $routes->post('admin/adduser', 'Admin\AdminController::addUser');
 
 $routes->get('admin/catalogue', 'Admin\AdminController::catalogue');
-$routes->get('admin/addPackage', 'AdminController::addPackage', ['filter' => 'auth:admin']);
+$routes->get('admin/addpackage', 'Admin\AdminController::addPackage');
+$routes->post('admin/addpackage', 'Admin\AdminController::addPackage');
 $routes->get('admin/editPackage/(:num)', 'AdminController::editPackage/$1', ['filter' => 'auth:admin']);
 $routes->post('admin/updatePackage/(:num)', 'AdminController::updatePackage/$1', ['filter' => 'auth:admin']);
 $routes->delete('admin/deletePackage/(:num)', 'AdminController::deletePackage/$1', ['filter' => 'auth:admin']);

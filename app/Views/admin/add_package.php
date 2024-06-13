@@ -8,41 +8,38 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Add a new user.</h1>
+                    <h1>Add a new Package</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-                        <li class="breadcrumb-item active">Add User</li>
+                        <li class="breadcrumb-item active">Add Package</li>
                     </ol>
                 </div>
             </div>
             <!-- general form elements -->
             <div class="card card-primary">
                 <!-- /.card-header -->
-                <form action="/admin/adduser" method="post" enctype="multipart/form-data">
+                <form action="/admin/addpackage" method="post" enctype="multipart/form-data">
                     <div class="card-body">
                         <div class="form-group">
                             <label for="name">Name</label>
                             <input type="text" class="form-control form-control-border" name="name" id="name" placeholder="Enter the name">
                         </div>
                         <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" class="form-control form-control-border" name="email" id="email" placeholder="Enter the email">
+                            <label for="price">Price</label>
+                            <input type="text" class="form-control form-control-border" name="price" id="price" placeholder="Enter the price">
                         </div>
                         <div class="form-group">
-                            <label for="password">Password</label>
-                            <input type="password" class="form-control form-control-border" name="password" id="password" placeholder="Enter the password">
+                            <label for="description">Description</label>
+                            <input type="text" class="form-control form-control-border" name="description" id="description" placeholder="Enter the description">
                         </div>
                         <div class="form-group">
-                            <label for="role">Role</label>
-                            <select class="custom-select form-control-border" name="role" id="role">
-                                <option value="user">User</option>
-                                <option value="admin">Admin</option>
-                            </select>
+                            <label for="image">Image_Placeholder</label>
+                            <input type="text" class="form-control form-control-border" name="image" id="image" placeholder="Enter the image">
                         </div>
                         <div class="card-footer d-flex justify-content-end">
-                            <button type="submit" class="btn btn-primary mx-1">Add new user</button>
+                            <button type="submit" class="btn btn-primary mx-1">Add new package</button>
                             <button type="button" class="btn btn-danger">Cancel</button>
                         </div>
                     </div>

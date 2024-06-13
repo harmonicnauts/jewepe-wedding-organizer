@@ -3,6 +3,7 @@
 namespace App\Controllers\Admin;
 
 use App\Models\UserModel;
+use App\Models\PackageModel;
 use App\Controllers\BaseController;
 
 class AdminController extends BaseController {
@@ -11,6 +12,7 @@ class AdminController extends BaseController {
 
     public function __construct() {
         $this->userModel = new UserModel();
+        $this->packageModel = new PackageModel();
     }
 
     public function dashboard() {
@@ -47,9 +49,39 @@ class AdminController extends BaseController {
             return redirect()->to(base_url('/admin/adduser'));
         }
     }
+
     public function catalogue() {
-        return view('admin/catalogue');
+        $data['packages'] = $this->packageModel->getAllPackage();
+        return view('admin/catalogue', $data);
     }
+
+    public function addPackage() {
+        helper(['form', 'url']);
+        $validation = \Config\Services::validation();
+
+        $validation->setRules([
+            'name' => 'required',
+            // 'description' => '',
+            'price' => 'required',
+            'image' => 'required',
+        ]);
+
+        if (!$validation->withRequest($this->request)->run()) {
+            return view('admin/add_package', ['validation' => $validation]);
+        } else {
+            $data = [
+                'name' => $this->request->getVar('name'),
+                'description' => $this->request->getVar('description'),
+                'price' => $this->request->getVar('price'),
+                'image' => $this->request->getVar('image'),
+            ];
+
+            $this->packageModel->addPackage($data);
+
+            return redirect()->to(base_url('/admin/addpackage'));
+        }
+    }
+
     public function orders() {
         return view('admin/orders');
     }

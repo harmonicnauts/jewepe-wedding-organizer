@@ -25,8 +25,7 @@
         <!-- Main content -->
         <section class="content">
             <div class="card">
-                <div class="card-header d-flex justify-content-between">
-                    <h3 class="card-title">Users List</h3>
+                <div class="card-header d-flex justify-content-end">
                     <a href="<?= base_url('/admin/addpackage') ?>" class="btn btn-primary">Add new package</a>
                 </div>
                 <!-- /.card-header -->
@@ -39,34 +38,38 @@
                                 <th>Description</th>
                                 <th>Price</th>
                                 <th>Image</th>
-                                <th>Time Created</th>
+                                <th>Created At</th>
                                 <th>Last Updated</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <?php if (!empty($users)) : ?>
-                                <?php foreach ($users as $user) : ?>
+                            <?php if (!empty($packages)) : ?>
+                                <?php foreach ($packages as $package) : ?>
                                     <tr>
-                                        <td><?= esc($user['user_id']) ?></td>
-                                        <td><?= esc($user['name']) ?></td>
-                                        <td><?= esc($user['email']) ?></td>
-                                        <td><?= esc($user['password']) ?></td>
-                                        <td><?= esc($user['role']) ?></td>
+                                        <td><?= esc($package['package_id']) ?></td>
+                                        <td><?= esc($package['name']) ?></td>
+                                        <td><?= esc($package['description']) ?></td>
+                                        <td><?= esc($package['price']) ?></td>
+                                        <td><?= esc($package['image']) ?></td>
+                                        <td><?= esc($package['created_at']) ?></td>
+                                        <td><?= esc($package['updated_at']) ?></td>
                                     </tr>
                                 <?php endforeach; ?>
                             <?php else : ?>
                                 <tr>
-                                    <td colspan="3">No users found.</td>
+                                    <td colspan="7">No Packages found.</td>
                                 </tr>
                             <?php endif; ?>
                         </tbody>
                         <tfoot>
                             <tr>
                                 <th>Id</th>
-                                <th>Username</th>
-                                <th>Email</th>
-                                <th>Password</th>
-                                <th>Role</th>
+                                <th>Name</th>
+                                <th>Description</th>
+                                <th>Price</th>
+                                <th>Image</th>
+                                <th>Created At</th>
+                                <th>Last Updated</th>
                             </tr>
                         </tfoot>
                     </table>
