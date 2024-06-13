@@ -10,10 +10,22 @@ class PackageModel extends Model {
 
     protected $primaryKey = 'package_id';
 
+    public function getAllPackage() {
+        return $this->findAll();
+    }
+
+    public function getPackage($id) {
+        return $this->find($id);
+    }
+
     public function addPackage($data) {
         return $this->insert($data);
     }
-    public function getAllPackage() {
-        return $this->findAll();
+    public function updatePackage($id, $data) {
+        return $this->where('package_id', $id)->set($data)->update();
+    }
+
+    public function deletePackage($id) {
+        return $this->where('package_id', $id)->delete();
     }
 }

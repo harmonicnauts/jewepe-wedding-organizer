@@ -26,7 +26,7 @@
         <section class="content">
             <div class="card">
                 <div class="card-header d-flex justify-content-end">
-                    <a href="<?= base_url('/admin/addUser') ?>" class="btn btn-primary">Add new user</a>
+                    <a href="<?= base_url('/admin/adduser') ?>" class="btn btn-primary">Add new user</a>
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
@@ -40,6 +40,7 @@
                                 <th>Role</th>
                                 <th>Time Created</th>
                                 <th>Last Updated</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -53,6 +54,12 @@
                                         <td><?= esc($user['role']) ?></td>
                                         <td><?= esc($user['created_at']) ?></td>
                                         <td><?= esc($user['updated_at']) ?></td>
+                                        <td class="d-flex justify-content-center">
+                                            <div class="btn-group">
+                                                <button type="button" class="btn btn-primary"><i class="fas fa-edit"></i></button>
+                                                <button type="button" class="btn btn-danger"><i class="fas fa-trash"></i></button>
+                                            </div>
+                                        </td>
                                     </tr>
                                 <?php endforeach; ?>
                             <?php else : ?>
@@ -70,6 +77,7 @@
                                 <th>Role</th>
                                 <th>Time Created</th>
                                 <th>Last Updated</th>
+                                <th>Action</th>
                             </tr>
                         </tfoot>
                     </table>

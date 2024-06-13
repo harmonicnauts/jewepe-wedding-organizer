@@ -1,5 +1,7 @@
 <?php $assets_dir = base_url('assets/'); ?>
 
+<!-- dropzonejs -->
+<script src="<?= $assets_dir ?>plugins/dropzone/min/dropzone.min.js"></script>
 <!-- jQuery -->
 <script src="<?= $assets_dir ?>plugins/jquery/jquery.min.js"></script>
 <!-- jQuery UI 1.11.4 -->
@@ -10,6 +12,7 @@
 </script>
 
 <script>
+    // Datatable code
     $(function() {
         $("#datatable").DataTable({
             "responsive": true,
@@ -18,10 +21,66 @@
             "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
         }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
     });
+
+    // DropzoneJS Demo Code Start
+    Dropzone.autoDiscover = false
+
+    // Get the template HTML and remove it from the doumenthe template HTML and remove it from the doument
+    var previewNode = document.querySelector("#template")
+    previewNode.id = ""
+    var previewTemplate = previewNode.parentNode.innerHTML
+    previewNode.parentNode.removeChild(previewNode)
+
+    var myDropzone = new Dropzone(document.body, { // Make the whole body a dropzone
+        url: "/target-url", // Set the url
+        thumbnailWidth: 80,
+        thumbnailHeight: 80,
+        parallelUploads: 20,
+        previewTemplate: previewTemplate,
+        autoQueue: false, // Make sure the files aren't queued until manually added
+        previewsContainer: "#previews", // Define the container to display the previews
+        clickable: ".fileinput-button" // Define the element that should be used as click trigger to select files.
+    })
+
+    myDropzone.on("addedfile", function(file) {
+        // Hookup the start button
+        file.previewElement.querySelector(".start").onclick = function() {
+            myDropzone.enqueueFile(file)
+        }
+    })
+
+    // Update the total progress bar
+    myDropzone.on("totaluploadprogress", function(progress) {
+        document.querySelector("#total-progress .progress-bar").style.width = progress + "%"
+    })
+
+    myDropzone.on("sending", function(file) {
+        // Show the total progress bar when upload starts
+        document.querySelector("#total-progress").style.opacity = "1"
+        // And disable the start button
+        file.previewElement.querySelector(".start").setAttribute("disabled", "disabled")
+    })
+
+    // Hide the total progress bar when nothing's uploading anymore
+    myDropzone.on("queuecomplete", function(progress) {
+        document.querySelector("#total-progress").style.opacity = "0"
+    })
+
+    // Setup the buttons for all transfers
+    // The "add files" button doesn't need to be setup because the config
+    // `clickable` has already been specified.
+    document.querySelector("#actions .start").onclick = function() {
+        myDropzone.enqueueFiles(myDropzone.getFilesWithStatus(Dropzone.ADDED))
+    }
+    document.querySelector("#actions .cancel").onclick = function() {
+        myDropzone.removeAllFiles(true)
+    }
+    // DropzoneJS Demo Code End
 </script>
 
 <!-- Bootstrap 4 -->
-<script src="<?= $assets_dir ?>plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
 <!-- ChartJS -->
 <script src="<?= $assets_dir ?>plugins/chart.js/Chart.min.js"></script>
 <!-- Sparkline -->
@@ -55,6 +114,7 @@
 <script src="<?= $assets_dir ?>plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
 <!-- AdminLTE App -->
 <script src="<?= $assets_dir ?>dist/js/adminlte.js"></script>
+
 </body>
 
 </html>

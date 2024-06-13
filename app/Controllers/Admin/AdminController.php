@@ -7,17 +7,21 @@ use App\Models\PackageModel;
 use App\Controllers\BaseController;
 
 class AdminController extends BaseController {
-
     protected $userModel;
+    protected $packageModel;
 
+    //Constructor
     public function __construct() {
         $this->userModel = new UserModel();
         $this->packageModel = new PackageModel();
     }
 
+    // Dashboard
     public function dashboard() {
         return view('admin/dashboard');
     }
+
+    // Manage User
     public function users() {
         $data['users'] = $this->userModel->getAllUser();
         return view('admin/users', $data);
@@ -27,7 +31,7 @@ class AdminController extends BaseController {
         $validation = \Config\Services::validation();
 
         $validation->setRules([
-            'email' => 'required|max_length[30]',
+            'email' => 'required|valid_email',
             'name' => 'required',
             'password' => 'required',
             'role' => 'required',
@@ -50,6 +54,7 @@ class AdminController extends BaseController {
         }
     }
 
+    // Manage Catalogue
     public function catalogue() {
         $data['packages'] = $this->packageModel->getAllPackage();
         return view('admin/catalogue', $data);
@@ -61,30 +66,93 @@ class AdminController extends BaseController {
 
         $validation->setRules([
             'name' => 'required',
-            // 'description' => '',
-            'price' => 'required',
-            'image' => 'required',
+            'price' => 'required|numeric',
+            // 'image' => 'max_size[image, 5120]|is_image[image]|mime_in[image/jpg,image/jpeg,image/png]',
         ]);
 
         if (!$validation->withRequest($this->request)->run()) {
             return view('admin/add_package', ['validation' => $validation]);
         } else {
+            $package_img = $this->request->getFile('image');
+            $img_name = $package_img->getRandomName();
+            $package_img->move(ROOTPATH . 'public/uploads/package', $img_name);
+
             $data = [
                 'name' => $this->request->getVar('name'),
                 'description' => $this->request->getVar('description'),
                 'price' => $this->request->getVar('price'),
-                'image' => $this->request->getVar('image'),
+                'image' => $img_name,
             ];
-
             $this->packageModel->addPackage($data);
 
-            return redirect()->to(base_url('/admin/addpackage'));
+            return redirect()->to(base_url('/admin/catalogue'));
         }
     }
 
+    public function updatePackage($id = null) {
+        helper(['form', 'url']);
+        $validation = \Config\Services::validation();
+
+        $validation->setRules([
+            'name' => 'required',
+            'price' => 'required|numeric',
+            // 'image' => 'max_size[image, 5120]|is_image[image]|mime_in[image/jpg,image/jpeg,image/png]',
+        ]);
+
+        $data['package'] = $this->packageModel->getPackage($id);
+
+        if (!$validation->withRequest($this->request)->run()) {
+            return view('admin/update_package', ['data' => $data, 'validation' => $validation]);
+        } else {
+            $package_img = $this->request->getFile('image');
+
+            if ($package_img->isValid() && !$package_img->hasMoved()) {
+                $prev_image = $data['package']['image'];
+                $newName = $package_img->getRandomName();
+
+                if ($prev_image && file_exists(base_url('uploads/package/') . $prev_image)) {
+                    unlink(ROOTPATH . 'public/uploads/package/' . $prev_image);
+                }
+                $package_img->move(base_url('uploads/package'),  $newName);
+                $data = [
+                    'name' => $this->request->getVar('name'),
+                    'description' => $this->request->getVar('description'),
+                    'price' => $this->request->getVar('price'),
+                    'image' => $newName,
+                ];
+            } else {
+                $data = [
+                    'name' => $this->request->getVar('name'),
+                    'description' => $this->request->getVar('description'),
+                    'price' => $this->request->getVar('price')
+                ];
+            }
+            $this->packageModel->updatePackage($id, $data);
+
+            return redirect()->to(base_url('/admin/catalogue'));
+        }
+    }
+
+    public function deletePackage($id = null) {
+        $data = $this->packageModel->getPackage($id);
+
+        if ($data) {
+            $this->packageModel->deletePackage($id);
+
+            $imagePath = ROOTPATH . 'public/uploads/package/' . $data['image'];
+
+            if (is_file($imagePath)) {
+                unlink($imagePath);
+            }
+        }
+        return redirect()->to(base_url('/admin/catalogue'));
+    }
+
+    // Manage Orders
     public function orders() {
         return view('admin/orders');
     }
+    // Manage Profile
     public function profile() {
         return view('admin/profile');
     }

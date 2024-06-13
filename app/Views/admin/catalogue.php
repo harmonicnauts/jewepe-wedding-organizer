@@ -1,5 +1,4 @@
 <?= $this->extend('admin/layout/template') ?>
-
 <?= $this->section('content') ?>
 <div class="wrapper">
     <!-- Content Wrapper. Contains page content -->
@@ -40,6 +39,8 @@
                                 <th>Image</th>
                                 <th>Created At</th>
                                 <th>Last Updated</th>
+                                <th>Action</th>
+
                             </tr>
                         </thead>
                         <tbody>
@@ -50,9 +51,21 @@
                                         <td><?= esc($package['name']) ?></td>
                                         <td><?= esc($package['description']) ?></td>
                                         <td><?= esc($package['price']) ?></td>
-                                        <td><?= esc($package['image']) ?></td>
+                                        <td class="d-flex justify-content-center">
+                                            <img src="<?= base_url("uploads/package/{$package['image']}") ?>" alt="Package Image" style="width:150px; height:150px;">
+                                        </td>
                                         <td><?= esc($package['created_at']) ?></td>
                                         <td><?= esc($package['updated_at']) ?></td>
+                                        <td>
+                                            <div class="btn-group">
+                                                <form action="/admin/updatepackage/<?= esc($package['package_id']) ?>" method="POST" style="display: inline;">
+                                                    <button type="submit" class="btn btn-primary"><i class="fas fa-edit"></i></button>
+                                                </form>
+                                                <form action="/admin/deletepackage/<?= esc($package['package_id']) ?>" method="POST" style="display: inline;">
+                                                    <button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i></button>
+                                                </form>
+                                            </div>
+                                        </td>
                                     </tr>
                                 <?php endforeach; ?>
                             <?php else : ?>
@@ -70,6 +83,7 @@
                                 <th>Image</th>
                                 <th>Created At</th>
                                 <th>Last Updated</th>
+                                <th>Action</th>
                             </tr>
                         </tfoot>
                     </table>

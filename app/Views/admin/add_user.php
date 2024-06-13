@@ -9,6 +9,7 @@
             <div class="row mb-2">
                 <div class="col-sm-6">
                     <h1>Add a new user.</h1>
+                    <?= $validation->listErrors(); ?>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -24,15 +25,24 @@
                     <div class="card-body">
                         <div class="form-group">
                             <label for="name">Name</label>
-                            <input type="text" class="form-control form-control-border" name="name" id="name" placeholder="Enter the name">
+                            <input type="text" class="form-control form-control-border <?= ($validation->hasError('name')) ? 'is-invalid' : '' ?>" name="name" id="name" placeholder="Enter the name">
+                            <div class="invalid-feedback">
+                                <?= $validation->getError('name'); ?>
+                            </div>
                         </div>
                         <div class="form-group">
                             <label for="email">Email</label>
-                            <input type="email" class="form-control form-control-border" name="email" id="email" placeholder="Enter the email">
+                            <input type="text" class="form-control form-control-border <?= ($validation->hasError('email')) ? 'is-invalid' : '' ?>" name="email" id="email" placeholder="Enter the email">
+                            <div class="invalid-feedback">
+                                <?= $validation->getError('email'); ?>
+                            </div>
                         </div>
                         <div class="form-group">
                             <label for="password">Password</label>
-                            <input type="password" class="form-control form-control-border" name="password" id="password" placeholder="Enter the password">
+                            <input type="password" class="form-control form-control-border <?= ($validation->hasError('password')) ? 'is-invalid' : '' ?>" name="password" id="password" placeholder="Enter the password">
+                            <div class="invalid-feedback">
+                                <?= $validation->getError('password'); ?>
+                            </div>
                         </div>
                         <div class="form-group">
                             <label for="role">Role</label>
