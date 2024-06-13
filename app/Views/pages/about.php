@@ -1,0 +1,2 @@
+<?
+echo base_url('');
