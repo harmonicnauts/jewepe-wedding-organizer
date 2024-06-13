@@ -15,7 +15,7 @@
                with font-awesome or any other icon font library -->
                 <li class="nav-item py-3">
                     <a href="users" class="nav-link">
-                        <i class="nav-icon far fa-image"></i>
+                        <i class="nav-icon fas fa-user"></i>
                         <p>
                             Manage Users
                         </p>
@@ -23,7 +23,7 @@
                 </li>
                 <li class="nav-item py-3">
                     <a href="catalogue" class="nav-link">
-                        <i class="nav-icon far fa-image"></i>
+                        <i class="nav-icon fas fa-box-open"></i>
                         <p>
                             Manage Catalogue
                         </p>
@@ -31,7 +31,7 @@
                 </li>
                 <li class="nav-item py-3">
                     <a href="orders" class="nav-link">
-                        <i class="nav-icon far fa-image"></i>
+                        <i class="nav-icon fas fa-tags"></i>
                         <p>
                             Manage Orders
                         </p>

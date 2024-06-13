@@ -2,53 +2,58 @@
 
 namespace App\Controllers\Admin;
 
-use App\Models\OrderModel;
-use App\Models\PackageModel;
 use App\Models\UserModel;
+use App\Controllers\BaseController;
 
 class AdminController extends BaseController {
 
-    public function catalog() {
-        $packageModel = new PackageModel();
-        $data['packages'] = $packageModel->findAll();
+    protected $userModel;
 
-        return view('pages/catalog', $data);
+    public function __construct() {
+        $this->userModel = new UserModel();
     }
 
-    public function manageOrders() {
-        $orderModel = new OrderModel();
-        $data['orders'] = $orderModel->findAll();
-
-        return view('pages/orders', $data);
+    public function dashboard() {
+        return view('admin/dashboard');
     }
-
-    public function manageUsers() {
-        $userModel = new UserModel();
-        $data['users'] = $userModel->findAll();
-
-        return view('pages/users', $data);
+    public function users() {
+        $data['users'] = $this->userModel->getAllUser();
+        return view('admin/users', $data);
     }
+    public function addUser() {
+        helper(['form', 'url']);
+        $validation = \Config\Services::validation();
 
-    public function updateOrderStatus($id) {
-        $orderModel = new OrderModel();
-        $order = $orderModel->find($id);
-        $order['status'] = 'approved';
-        $orderModel->save($order);
+        $validation->setRules([
+            'email' => 'required|max_length[30]',
+            'name' => 'required',
+            'password' => 'required',
+            'role' => 'required',
+        ]);
 
-        return redirect()->to('admin/manageOrders');
+        if (!$validation->withRequest($this->request)->run()) {
+            return view('admin/add_user', ['validation' => $validation]);
+        } else {
+
+            $data = [
+                'name' => $this->request->getVar('name'),
+                'email' => $this->request->getVar('email'),
+                'password' => $this->request->getVar('password'),
+                'role' => $this->request->getVar('role'),
+            ];
+
+            $this->userModel->addUser($data);
+
+            return redirect()->to(base_url('/admin/adduser'));
+        }
     }
-
-    public function report() {
-        return view('pages/report_form');
+    public function catalogue() {
+        return view('admin/catalogue');
     }
-
-    public function generateReport() {
-        $startDate = $this->request->getPost('start_date');
-        $endDate = $this->request->getPost('end_date');
-
-        $orderModel = new OrderModel();
-        $data['orders'] = $orderModel->getOrdersByDateRange($startDate, $endDate);
-
-        return view('pages/report_result', $data);
+    public function orders() {
+        return view('admin/orders');
+    }
+    public function profile() {
+        return view('admin/profile');
     }
 }
