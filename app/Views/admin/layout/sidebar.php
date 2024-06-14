@@ -14,7 +14,7 @@
                 <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
                 <li class="nav-item py-3">
-                    <a href="users" class="nav-link">
+                    <a href="<?= base_url('admin/users') ?>" class="nav-link">
                         <i class="nav-icon fas fa-user"></i>
                         <p>
                             Manage Users
@@ -22,7 +22,7 @@
                     </a>
                 </li>
                 <li class="nav-item py-3">
-                    <a href="catalogue" class="nav-link">
+                    <a href="<?= base_url('admin/catalogue') ?>" class="nav-link">
                         <i class="nav-icon fas fa-box-open"></i>
                         <p>
                             Manage Catalogue
@@ -30,7 +30,7 @@
                     </a>
                 </li>
                 <li class="nav-item py-3">
-                    <a href="orders" class="nav-link">
+                    <a href="<?= base_url('admin/orders') ?>" class="nav-link">
                         <i class="nav-icon fas fa-tags"></i>
                         <p>
                             Manage Orders
@@ -38,7 +38,7 @@
                     </a>
                 </li>
                 <li class="nav-item py-3">
-                    <a href="profile" class="nav-link">
+                    <a href="<?= base_url('admin/profile') ?>" class="nav-link">
                         <i class="nav-icon far fa-image"></i>
                         <p>
                             Web Profile
@@ -46,10 +46,22 @@
                     </a>
                 </li>
                 <li class="nav-item py-3">
-                    <a href="reports" class="nav-link">
+                    <a href="<?= base_url('admin/reports') ?>" class="nav-link">
                         <i class="nav-icon far fa-image"></i>
                         <p>
                             Reports
+                        </p>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <nav>
+            <ul class="nav nav-pills nav-sidebar flex-column mt-auto">
+                <li class="nav-item py-3">
+                    <a href="<?= base_url('/auth/logout') ?>" class="nav-link">
+                        <i class="nav-icon fas fa-sign-out-alt"></i>
+                        <p>
+                            Log Out
                         </p>
                     </a>
                 </li>
