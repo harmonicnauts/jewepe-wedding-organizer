@@ -54,10 +54,14 @@
                                         <td><?= esc($user['role']) ?></td>
                                         <td><?= esc($user['created_at']) ?></td>
                                         <td><?= esc($user['updated_at']) ?></td>
-                                        <td class="d-flex justify-content-center">
+                                        <td>
                                             <div class="btn-group">
-                                                <button type="button" class="btn btn-primary"><i class="fas fa-edit"></i></button>
-                                                <button type="button" class="btn btn-danger"><i class="fas fa-trash"></i></button>
+                                                <form action="/admin/updateuser/<?= esc($user['user_id']) ?>" method="POST" style="display: inline;">
+                                                    <button type="submit" class="btn btn-primary"><i class="fas fa-edit"></i></button>
+                                                </form>
+                                                <form action="/admin/deleteuser/<?= esc($user['user_id']) ?>" method="POST" style="display: inline;">
+                                                    <button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i></button>
+                                                </form>
                                             </div>
                                         </td>
                                     </tr>
