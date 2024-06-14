@@ -3,35 +3,34 @@
 
 <?= $this->section('content') ?>
 
-<section id="about" class="about section">
+<section class="vh-100" style="background-color: #508bfc;">
+    <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                <div class="card shadow-2-strong" style="border-radius: 1rem;">
+                    <form action="<?= base_url('/auth/authenticate') ?>" method="post" class="card-body p-5 text-center">
 
-    <div class="container">
+                        <h3 class="mb-5">Sign in</h3>
 
-        <div class="row gy-4">
-            <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
-                <img src="<?= base_url('assets/img') ?>/about.jpg" class="img-fluid rounded-4 mb-4" alt="">
-            </div>
-            <div class="col-lg-6" data-aos="fade-up" data-aos-delay="250">
-                <div class="content ps-0 ps-lg-5">
-                    <?php if (session()->getFlashdata('error')) : ?>
-                        <p style="color: red;"><?= session()->getFlashdata('error') ?></p>
-                    <?php endif; ?>
-                    <h1>Login</h1>
-                    <form action="<?= base_url('/auth/authenticate') ?>" method="post">
-                        <div class="form-group">
-                            <label for="email">Email:</label>
-                            <input type="email" name="email" id="email" class="form-control" required>
+                        <div data-mdb-input-init class="form-outline mb-4">
+                            <input type="email" name="email" id="email" class="form-control form-control-lg" required />
+                            <label class="form-label" for="email">Email</label>
                         </div>
-                        <div class="form-group">
-                            <label for="password">Password:</label>
-                            <input type="password" name="password" id="password" class="form-control" required>
+
+                        <div data-mdb-input-init class="form-outline mb-4">
+                            <input type="password" name="password" id="password" class="form-control form-control-lg" required />
+                            <label class="form-label" for="password">Password</label>
                         </div>
-                        <button type="submit" class="btn btn-primary">Login</button>
+
+                        <button data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-lg btn-block" type="submit">Login</button>
+
+                        <hr class="my-4">
+
                     </form>
                 </div>
             </div>
         </div>
     </div>
-</section><!-- /About Section -->
+</section>
 
 <?= $this->endSection() ?>
