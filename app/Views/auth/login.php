@@ -13,8 +13,11 @@
             </div>
             <div class="col-lg-6" data-aos="fade-up" data-aos-delay="250">
                 <div class="content ps-0 ps-lg-5">
+                    <?php if (session()->getFlashdata('error')) : ?>
+                        <p style="color: red;"><?= session()->getFlashdata('error') ?></p>
+                    <?php endif; ?>
                     <h1>Login</h1>
-                    <form action="<?= base_url('auth/authenticate') ?>" method="post">
+                    <form action="<?= base_url('/auth/authenticate') ?>" method="post">
                         <div class="form-group">
                             <label for="email">Email:</label>
                             <input type="email" name="email" id="email" class="form-control" required>

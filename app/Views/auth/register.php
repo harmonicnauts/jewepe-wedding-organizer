@@ -11,7 +11,13 @@
             <div class="col-lg-6" data-aos="fade-up" data-aos-delay="250">
                 <div class="content ps-0 ps-lg-5">
                     <h1>Register</h1>
-                    <form action="<?= base_url('auth/register') ?>" method="post">
+                    <?php if (isset($validation)) : ?>
+                        <div style="color: red;">
+                            <?= $validation->listErrors() ?>
+                        </div>
+                    <?php endif; ?>
+                    <form action="<?= base_url('/auth/register') ?>" method="post">
+                        <?= csrf_field() ?>
                         <div class="form-group">
                             <label for="name">Name:</label>
                             <input type="text" name="name" id="name" class="form-control" required>
