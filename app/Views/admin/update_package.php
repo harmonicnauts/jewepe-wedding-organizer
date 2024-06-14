@@ -9,7 +9,6 @@
             <div class="row mb-2">
                 <div class="col-sm-6">
                     <h1>Edit This Package</h1>
-                    <?= base_url('') ?>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
