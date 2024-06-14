@@ -13,35 +13,63 @@ class AuthController extends BaseController {
         return view('auth/register');
     }
 
-    // Authenticate : Fix some lil bugs and we're good to go
+    // Authenticate : Fix some lil bugs and we're good to go -> DONE
     public function authenticate() {
+        $session = session();
         $userModel = new UserModel();
-        $email = $this->request->getPost('email');
-        $password = $this->request->getPost('password');
+        $email = $this->request->getVar('email');
+        $password = $this->request->getVar('password');
 
         $user = $userModel->where('email', $email)->first();
 
         if ($user && password_verify($password, $user['password'])) {
-            session()->set([
-                'user_id' => $user['id'],
-                'user_name' => $user['name'],
-                'user_role' => $user['role'],
-                'is_logged_in' => true,
-            ]);
-
-            if ($user['role'] === 'admin') {
-                return redirect()->to('admin/dashboard');
-            } else {
-                return redirect()->to('/');
-            }
+            $sessionData = [
+                'user_id' => $user['user_id'],
+                'email' => $user['email'],
+                'name' => $user['name'],
+                'role' => $user['role'],
+                'isLoggedIn' => true,
+            ];
+            $session->set($sessionData);
+            return redirect()->to(base_url('/admin/dashboard'));
         } else {
-            return redirect()->to('login')->with('error', 'Invalid login credentials');
+            $session->setFlashdata('error', 'Invalid email or password');
+            return redirect()->to(base_url('/login'));
+        }
+    }
+
+    // Store new user : DONE
+    public function store() {
+        $validation = \Config\Services::validation();
+
+        $validation->setRules([
+            'name' => 'required',
+            'email' => 'required|valid_email',
+            'password' => 'required|min_length[6]',
+        ]);
+
+        if (!$validation->withRequest($this->request)->run()) {
+            return view('auth/register', ['validation' => $validation]);
+        } else {
+            $userModel = new UserModel();
+
+            $data = [
+                'name' => $this->request->getVar('name'),
+                'email' => $this->request->getVar('email'),
+                'password' => password_hash($this->request->getVar('password'), PASSWORD_BCRYPT),
+                'role' => 'user',
+            ];
+
+            $userModel->save($data);
+
+            return redirect()->to(base_url('/login'))->with('success', 'Registration successful. Please login.');
         }
     }
 
     // Logout : DONE
     public function logout() {
-        session()->destroy();
-        return redirect()->to('/');
+        $session = session();
+        $session->destroy();
+        return redirect()->to(base_url('/login'));
     }
 }

@@ -17,16 +17,24 @@
                 </li>
             </ul>
             <ul class="navbar-nav ms-auto">
-                <?php if (session()->get('is_logged_in')) : ?>
+                <?php if (session()->get('isLoggedIn')) : ?>
+                    <?php if (session()->get('role') === 'admin') : ?>
+                        <li class="nav-item">
+                            <a class="nav-link" href="<?= base_url('admin/dashboard') ?>">Admin Dashboard</a>
+                        </li>
+                    <?php endif; ?>
                     <li class="nav-item">
-                        <a class="nav-link" href="/user/profile">Profile</a>
+                        <a class="nav-link" href="/user/profile"><?= session()->get('name') ?></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/auth/logout">Logout</a>
                     </li>
                 <?php else : ?>
                     <li class="nav-item">
-                        <a class="nav-link" href="login">Login</a>
+                        <a class="nav-link" href="/login">Login</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="register">Register</a>
+                        <a class="nav-link" href="/register">Register</a>
                     </li>
                 <?php endif; ?>
             </ul>

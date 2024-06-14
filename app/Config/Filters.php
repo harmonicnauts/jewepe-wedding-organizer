@@ -13,8 +13,7 @@ use CodeIgniter\Filters\PageCache;
 use CodeIgniter\Filters\PerformanceMetrics;
 use CodeIgniter\Filters\SecureHeaders;
 
-class Filters extends BaseFilters
-{
+class Filters extends BaseFilters {
     /**
      * Configures aliases for Filter classes to
      * make reading things nicer and simpler.
@@ -34,6 +33,7 @@ class Filters extends BaseFilters
         'forcehttps'    => ForceHTTPS::class,
         'pagecache'     => PageCache::class,
         'performance'   => PerformanceMetrics::class,
+        'auth'          => \App\Filters\AuthFilter::class,
     ];
 
     /**
@@ -103,5 +103,7 @@ class Filters extends BaseFilters
      *
      * @var array<string, array<string, list<string>>>
      */
-    public array $filters = [];
+    public array $filters = [
+        'auth' => ['before' => ['admin/*']],
+    ];
 }
