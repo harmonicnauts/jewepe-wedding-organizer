@@ -14,7 +14,7 @@ class AuthFilter implements FilterInterface {
         }
 
         if ($session->get('role') !== 'admin') {
-            return redirect()->to(base_url('/login'));
+            return redirect()->to(base_url('/'));
         }
     }
 
