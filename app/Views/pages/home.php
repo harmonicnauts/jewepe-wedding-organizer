@@ -9,9 +9,9 @@
         <div class="row gy-5 justify-content-between">
             <div class="col order-2 order-lg-1 d-flex flex-column justify-content-center">
                 <h2><span>Welcome to </span><span class="accent">Jewepe Wedding Organizer</span></h2>
-                <p>Sed autem laudantium dolores. Voluptatem itaque ea consequatur eveniet. Eum quas beatae cumque eum quaerat.</p>
+                <p>We specialize in turning your wedding dreams into a flawless reality. From intimate gatherings to grand celebrations, our experienced team of wedding organizers is dedicated to crafting unforgettable moments that reflect your unique style and love story.</p>
                 <div class="d-flex">
-                    <a href="#" class="btn-get-started">Get Started</a>
+                    <a href="#stats" class="btn-get-started">Get Started</a>
                 </div>
             </div>
         </div>
@@ -19,36 +19,35 @@
     <div class="icon-boxes position-relative" data-aos="fade-up" data-aos-delay="200">
         <div class="container position-relative">
             <div class="row gy-4 mt-5">
-
                 <div class="col-xl-3 col-md-6">
                     <div class="icon-box">
-                        <div class="icon"><i class="bi bi-easel"></i></div>
-                        <h4 class="title"><a href="" class="stretched-link">Lorem Ipsum</a></h4>
+                        <div class="icon"><i class="bi bi-palette"></i></div>
+                        <h4 class="title"><a href="" class="stretched-link">Design & Decor</a></h4>
                     </div>
                 </div><!--End Icon Box -->
 
                 <div class="col-xl-3 col-md-6">
                     <div class="icon-box">
-                        <div class="icon"><i class="bi bi-gem"></i></div>
-                        <h4 class="title"><a href="" class="stretched-link">Sed ut perspiciatis</a></h4>
+                        <div class="icon"><i class="bi bi-calendar-check"></i></div>
+                        <h4 class="title"><a href="" class="stretched-link">On the day coordination</a></h4>
                     </div>
                 </div><!--End Icon Box -->
 
                 <div class="col-xl-3 col-md-6">
                     <div class="icon-box">
-                        <div class="icon"><i class="bi bi-geo-alt"></i></div>
-                        <h4 class="title"><a href="" class="stretched-link">Magni Dolores</a></h4>
+                        <div class="icon"><i class="bi bi-clock"></i></div>
+                        <h4 class="title"><a href="" class="stretched-link">Punctuality</a></h4>
                     </div>
                 </div><!--End Icon Box -->
 
                 <div class="col-xl-3 col-md-6">
                     <div class="icon-box">
-                        <div class="icon"><i class="bi bi-command"></i></div>
-                        <h4 class="title"><a href="" class="stretched-link">Nemo Enim</a></h4>
+                        <div class="icon"><i class="bi bi-house-door"></i></div>
+                        <h4 class="title"><a href="" class="stretched-link">Venue Selection</a></h4>
                     </div>
                 </div><!--End Icon Box -->
-
             </div>
+
         </div>
     </div>
 
@@ -67,8 +66,8 @@
                         <div class="stats-item d-flex">
                             <i class="bi bi-heart-fill flex-shrink-0"></i>
                             <div>
-                                <span data-purecounter-start="0" data-purecounter-end="232" data-purecounter-duration="1" class="purecounter"></span>
-                                <p><strong>Succesful Marriage</strong> <span>consequuntur quae</span></p>
+                                <span data-purecounter-start="0" data-purecounter-end="<?= $successful_marriage ?>" data-purecounter-duration="1" class="purecounter"></span>
+                                <p><strong>Successful Marriages</strong> <span>created with care</span></p>
                             </div>
                         </div>
                     </div><!-- End Stats Item -->
@@ -77,8 +76,8 @@
                         <div class="stats-item d-flex">
                             <i class="bi bi-emoji-smile flex-shrink-0"></i>
                             <div>
-                                <span data-purecounter-start="0" data-purecounter-end="521" data-purecounter-duration="1" class="purecounter"></span>
-                                <p><strong>Satisfied Customer</strong> <span>adipisci atque cum quia aut</span></p>
+                                <span data-purecounter-start="0" data-purecounter-end="<?= $satisfied_customer ?>"" data-purecounter-duration=" 1" class="purecounter"></span>
+                                <p><strong>Satisfied Customers</strong> <span>who loved their day</span></p>
                             </div>
                         </div>
                     </div><!-- End Stats Item -->
@@ -87,11 +86,12 @@
                         <div class="stats-item d-flex">
                             <i class="bi bi-people-fill flex-shrink-0"></i>
                             <div>
-                                <span data-purecounter-start="0" data-purecounter-end="1453" data-purecounter-duration="1" class="purecounter"></span>
-                                <p><strong>Guests</strong> <span>aut commodi quaerat</span></p>
+                                <span data-purecounter-start="0" data-purecounter-end="<?= $guests ?>" data-purecounter-duration="1" class="purecounter"></span>
+                                <p><strong>Guests</strong> <span>celebrated joyfully</span></p>
                             </div>
                         </div>
                     </div><!-- End Stats Item -->
+
 
                 </div>
 
@@ -115,19 +115,15 @@
 
         <div class="row gy-4">
             <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
-                <img src="<?= $image_dir ?>/about.jpg" class="img-fluid rounded-4 mb-4" alt="">
+                <img src="<?= base_url('uploads/profile/whoarewe.jpg') ?>" class="img-fluid rounded-4 mb-4" alt="">
             </div>
             <div class="col-lg-6" data-aos="fade-up" data-aos-delay="250">
                 <div class="content ps-0 ps-lg-5">
                     <p class="fst-italic d-flex align-items-center">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-                        magna aliqua.
+                        "Where there is love, there is life." - Mahatma Gandhi
                     </p>
                     <p>
-                        Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-                        velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-                        velit esse cillum dolore eu fugiat nulla pariatur
-                    </p>
+                        <?= $description ?>
                 </div>
             </div>
         </div>
@@ -148,19 +144,16 @@
             <div class="col-lg-6" data-aos="fade-up" data-aos-delay="250">
                 <div class="content ps-0 ps-lg-5">
                     <p class="fst-italic d-flex align-items-center">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-                        magna aliqua.
+                        "Love recognizes no barriers. It jumps hurdles, leaps fences, penetrates walls to arrive at its destination full of hope." - Maya Angelou
                     </p>
                     <p>
-                        Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-                        velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-                        velit esse cillum dolore eu fugiat nulla pariatur
+                        <?= $vision ?>
                     </p>
                 </div>
             </div>
 
             <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
-                <img src="<?= $image_dir ?>/about.jpg" class="img-fluid rounded-4 mb-4" alt="">
+                <img src="<?= base_url('uploads/profile/vision.jpg') ?>" class="img-fluid rounded-4 mb-4" alt="">
             </div>
         </div>
     </div>
@@ -175,7 +168,7 @@
             <div class="col-xl-10">
                 <div class="text-center">
                     <h3>Explore more of what we offer.</h3>
-                    <a class="cta-btn" href="#">Our catalogues</a>
+                    <a class="cta-btn" href="<?= base_url('catalogue') ?>">Our catalogues</a>
                 </div>
             </div>
         </div>

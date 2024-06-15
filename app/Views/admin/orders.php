@@ -34,7 +34,6 @@
                                 <th>User Id</th>
                                 <th>Package Id</th>
                                 <th>Event Date</th>
-                                <th>Special Requests</th>
                                 <th>Status</th>
                                 <th>Created At</th>
                                 <th>Last Updated</th>
@@ -44,29 +43,31 @@
                         <tbody>
                             <?php if (!empty($orders)) : ?>
                                 <?php foreach ($orders as $order) : ?>
-                                    <tr>
-                                        <td><?= esc($order['order_id']) ?></td>
-                                        <td><?= esc($order['user_id']) ?></td>
-                                        <td><?= esc($order['package_id']) ?></td>
-                                        <td><?= esc($order['event_date']) ?></td>
-                                        <td><?= esc($order['special_requests']) ?></td>
-                                        <td><?= esc($order['status']) ?></td>
-                                        <td><?= esc($order['created_at']) ?></td>
-                                        <td><?= esc($order['updated_at']) ?></td>
-                                        <td>
-                                            <div class="btn-group">
-                                                <form action="/admin/changeorderstatus/<?= esc($order['order_id']) ?>" method="POST" style="display: inline;">
-                                                    <input type="hidden" name="_method" value="PUT"> <!-- Use PUT method for update -->
-                                                    <button type="submit" class="btn <?= esc($order['status']) == 'approved' ? 'btn-danger' : 'btn-primary' ?>">
-                                                        <?= esc($order['status']) == 'approved' ? 'Unapprove' : 'Approve' ?>
-                                                    </button>
-                                                </form>
-                                                <!-- <form action="/admin/deleteorder/<?= esc($order['order_id']) ?>" method="POST" style="display: inline;">
-                                                    <button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i></button>
-                                                </form> -->
-                                            </div>
-                                        </td>
-                                    </tr>
+                                    <?php if (esc($order['visibility'])) : ?>
+                                        <tr>
+                                            <td><?= esc($order['order_id']) ?></td>
+                                            <td><?= esc($order['user_id']) ?></td>
+                                            <td><?= esc($order['package_id']) ?></td>
+                                            <td><?= esc($order['event_date']) ?></td>
+                                            <td><?= esc($order['status']) ?></td>
+                                            <td><?= esc($order['created_at']) ?></td>
+                                            <td><?= esc($order['updated_at']) ?></td>
+                                            <td>
+                                                <div class="btn-group d-flex justify-content-center">
+                                                    <form action="/admin/changeorderstatus/<?= esc($order['order_id']) ?>" method="POST" style="display: inline;">
+                                                        <input type="hidden" name="_method" value="PUT">
+                                                        <button type="submit" class="btn mx-2 <?= esc($order['status']) == 'approved' ? 'btn-danger' : 'btn-primary' ?>">
+                                                            <?= esc($order['status']) == 'approved' ? '<i class="fas fa-thumbs-down"></i>' : '<i class="fas fa-thumbs-up"></i>' ?>
+                                                        </button>
+                                                    </form>
+                                                    <form action="/admin/deleteorder/<?= esc($order['order_id']) ?>" method="POST" style="display: inline;" onsubmit="return confirm('Are you sure you want to delete this order?');">
+                                                        <input type="hidden" name="_method" value="PUT">
+                                                        <button type="submit" class="btn mx-2 btn-danger"><i class="fas fa-trash"></i></button>
+                                                    </form>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    <?php endif; ?>
                                 <?php endforeach; ?>
                             <?php else : ?>
                                 <tr>
@@ -80,7 +81,6 @@
                                 <th>User Id</th>
                                 <th>Package Id</th>
                                 <th>Event Date</th>
-                                <th>Special Requests</th>
                                 <th>Status</th>
                                 <th>Created At</th>
                                 <th>Last Updated</th>

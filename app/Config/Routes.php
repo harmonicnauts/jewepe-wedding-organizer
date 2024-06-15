@@ -15,16 +15,32 @@ $routes->get('register', 'AuthController::register');
 $routes->post('auth/register', 'AuthController::store');
 $routes->get('auth/logout', 'AuthController::logout');
 
+$routes->get('order/(:num)', 'UserController::order/$1');
+$routes->post('order/(:num)', 'UserController::saveOrder/$1');
 
-$routes->group('admin', ['filter' => 'auth', 'namespace' => 'App\Controllers\Admin'], function ($routes) {
+$routes->group('admin', ['filter' => 'adminauth', 'namespace' => 'App\Controllers\Admin'], function ($routes) {
+
     $routes->get('dashboard', 'AdminController::dashboard');
+
     $routes->get('users', 'AdminController::users');
-    $routes->match(['get', 'post'], 'adduser', 'AdminController::addUser');
+    $routes->get('adduser', 'AdminController::addUserPage');
+    $routes->post('adduser', 'AdminController::addUser');
+    $routes->post('updateuser/(:num)', 'AdminController::updateUser/$1');
+    $routes->post('deleteuser/(:num)', 'AdminController::deleteUser/$1');
+
     $routes->get('catalogue', 'AdminController::catalogue');
     $routes->match(['get', 'post'], 'addpackage', 'AdminController::addPackage');
     $routes->post('updatepackage/(:num)', 'AdminController::updatePackage/$1');
     $routes->post('deletepackage/(:num)', 'AdminController::deletePackage/$1');
+
+    $routes->get('orders', 'AdminController::orders');
+    $routes->put('changeorderstatus/(:num)', 'AdminController::changeOrderStatus/$1');
+    $routes->put('deleteorder/(:num)', 'AdminController::deleteOrder/$1');
+
+    $routes->get('profile', 'AdminController::profile');
 });
+
+
 
 
 

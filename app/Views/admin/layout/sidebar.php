@@ -39,7 +39,7 @@
                 </li>
                 <li class="nav-item py-3">
                     <a href="<?= base_url('admin/profile') ?>" class="nav-link">
-                        <i class="nav-icon far fa-image"></i>
+                        <i class="nav-icon fas fa-home"></i>
                         <p>
                             Web Profile
                         </p>

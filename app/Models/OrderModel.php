@@ -7,7 +7,13 @@ use CodeIgniter\Model;
 class OrderModel extends Model {
     protected $table = 'orders';
     protected $allowedFields = [
-        'order_id', 'user_id', 'package_id', 'event_date', 'special_requests', 'status', 'created_at', 'updated_at',
+        'user_id',
+        'package_id',
+        'event_date',
+        'status',
+        'created_at',
+        'updated_at',
+        'visibility'
     ];
     protected $primaryKey = 'order_id';
 

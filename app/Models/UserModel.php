@@ -16,4 +16,16 @@ class UserModel extends Model {
     public function getAllUser() {
         return $this->findAll();
     }
+
+    public function getUser($id) {
+        return $this->find($id);
+    }
+
+    public function updateUser($id, $data) {
+        return $this->where('user_id', $id)->set($data)->update();
+    }
+
+    public function deleteUser($id) {
+        return $this->where('user_id', $id)->delete();
+    }
 }
