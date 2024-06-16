@@ -6,43 +6,41 @@
     <div class="card-header">
         <h3 class="card-title">General Elements</h3>
     </div>
-    <!-- /.card-header -->
     <div class="card-body">
-        <form>
+        <form action="<?= base_url('admin/profile') ?>" method="post" enctype="multipart/form-data">
+            <?= csrf_field() ?>
+
             <div class="form-group m-4 row">
-                <label for="title" class="col-sm-2 col-form-label">Title</label>
+                <label for="description" class="col-sm-2 col-form-label">Who are we</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="title" placeholder="Enter Title" value="<?= $web_info['title'] ?? '' ?>">
+                    <textarea class="form-control" name="description" id="description" rows="3" placeholder="Enter who are we"><?= $description ?? '' ?></textarea>
                 </div>
             </div>
 
             <div class="form-group m-4 row">
-                <label for="description" class="col-sm-2 col-form-label">Description</label>
+                <label for="vision" class="col-sm-2 col-form-label">Vision</label>
                 <div class="col-sm-10">
-                    <textarea class="form-control" id="description" rows="3" placeholder="Enter Description"><?= $web_info['description'] ?? '' ?></textarea>
+                    <textarea class="form-control" name="vision" id="vision" rows="3" placeholder="Enter vision"><?= $vision ?? '' ?></textarea>
                 </div>
             </div>
 
             <div class="form-group m-4 row">
                 <label for="successful_marriage" class="col-sm-2 col-form-label">Successful Marriages</label>
                 <div class="col-sm-4">
-                    <input type="number" class="form-control" id="successful_marriage" placeholder="Successful Marriages" value="<?= $web_info['successful_marriage'] ?? '' ?>">
+                    <input type="number" class="form-control" name="successful_marriage" id="successful_marriage" placeholder="Successful Marriages" value="<?= $successful_marriage ?? '' ?>">
                 </div>
                 <label for="satisfied_customer" class="col-sm-2 col-form-label"></label>
                 <div class="col-sm-4">
-                    <input type="number" class="form-control" id="satisfied_customer" placeholder="Satisfied Customers" value="<?= $web_info['satisfied_customer'] ?? '' ?>">
+                    <input type="number" class="form-control" name='satisfied_customer' id="satisfied_customer" placeholder="Satisfied Customers" value="<?= $satisfied_customer ?? '' ?>">
                 </div>
-
             </div>
 
             <div class="form-group m-4 row">
                 <label for="guests" class="col-sm-2 col-form-label">Guests</label>
                 <div class="col-sm-4">
-                    <input type="number" class="form-control" id="guests" placeholder="Guests" value="<?= $web_info['guests'] ?? '' ?>">
+                    <input type="number" class="form-control" name='guests' id="guests" placeholder="Guests" value="<?= $guests ?? '' ?>">
                 </div>
             </div>
-
-            <!-- Additional fields as per your database columns -->
 
             <div class="form-group row">
                 <div class="col-sm-10 offset-sm-2">
@@ -51,7 +49,6 @@
             </div>
         </form>
     </div>
-    <!-- /.card-body -->
 </div>
 
 <?= $this->endSection() ?>

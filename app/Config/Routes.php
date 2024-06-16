@@ -38,6 +38,9 @@ $routes->group('admin', ['filter' => 'adminauth', 'namespace' => 'App\Controller
     $routes->put('deleteorder/(:num)', 'AdminController::deleteOrder/$1');
 
     $routes->get('profile', 'AdminController::profile');
+    $routes->post('profile', 'AdminController::updateProfInfo');
+
+    $routes->get('reports', 'AdminController::report');
 });
 
 

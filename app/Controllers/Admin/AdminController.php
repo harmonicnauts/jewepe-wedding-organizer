@@ -231,6 +231,7 @@ class AdminController extends BaseController {
 
     // Manage Profile
     public function profile() {
+
         $profileData = $this->webProfileModel->first();
 
         if ($profileData) {
@@ -241,12 +242,49 @@ class AdminController extends BaseController {
                 'description' => $profileData['description'],
                 'vision' => $profileData['vision'],
             ];
-
-            return view('admin/web_profile', $data);
         } else {
             echo "No data found.";
         }
+        return view('admin/web_profile', $data);
     }
+
+    public function updateProfInfo() {
+        $data = [
+            'description'         => $this->request->getVar('description'),
+            'vision'              => $this->request->getVar('vision'),
+            'successful_marriage' => $this->request->getVar('successful_marriage'),
+            'satisfied_customer'  => $this->request->getVar('satisfied_customer'),
+            'guests'              => $this->request->getVar('guests')
+        ];
+
+        $this->webProfileModel->updateProfile($data, 1);
+        return redirect()->to(base_url('/admin/profile'))->with('status', 'Profile updated successfully');
+    }
+
+    public function report() {
+        // Get all packages
+        $packages = $this->packageModel->findAll();
+
+        // Get the count of each package_id in orders table
+        $quantities = $this->orderModel->select('package_id, COUNT(package_id) as quantity')
+            ->groupBy('package_id')
+            ->findAll();
+
+        // Prepare the quantity array
+        $packageQuantities = [];
+        foreach ($quantities as $quantity) {
+            $packageQuantities[$quantity['package_id']] = $quantity['quantity'];
+        }
+
+        // Pass data to the view
+        $data = [
+            'packages' => $packages,
+            'packageQuantities' => $packageQuantities
+        ];
+
+        return view('admin/report', $data);
+    }
+
 
     // Helper method for setting validation rules
     private function setupValidationRules($rules) {
