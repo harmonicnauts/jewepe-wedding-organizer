@@ -44,61 +44,73 @@ class AdminController extends BaseController {
         $this->setupValidationRules(['email' => 'required|valid_email', 'name' => 'required', 'password' => 'required', 'role' => 'required']);
         return view('admin/add_user', ['validation' => $this->validation]);
     }
-
-    public function addUser() {
+    public function addUserAction() {
         $this->setupValidationRules(['email' => 'required|valid_email', 'name' => 'required', 'password' => 'required', 'role' => 'required']);
-
         if (!$this->validation->withRequest($this->request)->run()) {
             return view('admin/add_user', ['validation' => $this->validation]);
         } else {
             $data = [
                 'name' => $this->request->getVar('name'),
                 'email' => $this->request->getVar('email'),
-                'password' => $this->request->getVar('password'),
+                'password' => password_hash($this->request->getVar('password'), PASSWORD_DEFAULT),
                 'role' => $this->request->getVar('role'),
             ];
-
             $this->userModel->addUser($data);
-
-            return redirect()->to(base_url('/admin/adduser'));
+            return redirect()->to(base_url('/admin/users'));
         }
     }
 
     public function updateUserPage($id = null) {
         $this->setupValidationRules(['email' => 'required|valid_email', 'name' => 'required', 'password' => 'required', 'role' => 'required']);
-        $user = $this->userModel->find($id);
-        if (!$user) {
-            return redirect()->to(base_url('/admin/users'))->with('error', 'User not found');
-        }
-
+        $user = $this->userModel->getUser($id);
         return view('admin/update_user', ['user' => $user, 'validation' => $this->validation]);
     }
 
-    public function updateUser($id = null) {
-        $this->setupValidationRules(['email' => 'required|valid_email', 'name' => 'required', 'role' => 'required']);
+    public function updateUserAction($id = null) {
+        $this->setupValidationRules(['email' => 'required|valid_email', 'name' => 'required', 'password' => 'required', 'role' => 'required']);
+        $data =  [
+            'name' => $this->request->getVar('name'),
+            'email' => $this->request->getVar('email'),
+            'role' => $this->request->getVar('role'),
+        ];
 
-        $user = $this->userModel->find($id);
-        if (!$user) {
-            return redirect()->to(base_url('/admin/users'))->with('error', 'User not found');
+        if ($this->request->getVar('password')) {
+            $data['password'] = password_hash($this->request->getVar('password'), PASSWORD_DEFAULT);
         }
 
-        if ($this->request->getMethod() === 'post' && $this->validation->withRequest($this->request)->run()) {
-            $data = [
-                'name' => $this->request->getVar('name'),
-                'email' => $this->request->getVar('email'),
-                'role' => $this->request->getVar('role'),
-                'password' => password_hash($this->request->getVar('password'), PASSWORD_DEFAULT)
-            ];
+        $this->userModel->updateUser($id, $data);
 
-            $this->userModel->updateUser($id, $data);
-
-            return redirect()->to(base_url('/admin/users'))->with('success', 'User updated successfully');
-        }
-
-        return view('admin/update_user', ['user' => $user, 'validation' => $this->validation]);
+        return redirect()->to(base_url('/admin/users'));
     }
 
-    public function deleteUser($id = null) {
+
+
+    // public function updateUser($id = null) {
+    //     $this->setupValidationRules(['email' => 'required|valid_email', 'name' => 'required', 'role' => 'required']);
+    //     $data['user'] = $this->userModel->getUser($id);
+
+    //     if (!$this->validation->withRequest($this->request)->run()) {
+    //         return view('admin/update_user', ['data' => $data, 'validation' => $this->validation]);
+    //     } else {
+    //         $data = [
+    //             'name' => $this->request->getVar('name'),
+    //             'email' => $this->request->getVar('email'),
+    //             'role' => $this->request->getVar('role')
+    //         ];
+
+    //         // Check if the password field is set and not empty, then hash it
+    //         if ($this->request->getVar('password')) {
+    //             $data['password'] = password_hash($this->request->getVar('password'), PASSWORD_DEFAULT);
+    //         }
+
+    //         // Update the user data
+    //         $this->userModel->update($id, $data);
+
+    //         return redirect()->to(base_url('/admin/users'));
+    //     }
+    // }
+
+    public function deleteUserAction($id = null) {
         $user = $this->userModel->find($id);
         if ($user) {
             $this->userModel->delete($id);

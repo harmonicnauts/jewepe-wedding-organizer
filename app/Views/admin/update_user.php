@@ -25,8 +25,9 @@
                     </div>
                 <?php endif; ?>
                 <!-- /.card-header -->
-                <form action="/admin/updateuser/<?= $user['user_id'] ?>" method="post" enctype="multipart/form-data">
+                <form action="/admin/update-user/<?= $user['user_id'] ?>" method="post" enctype="multipart/form-data">
                     <?= csrf_field() ?>
+                    <input type="hidden" name="_method" value="PUT">
                     <div class="card-body">
                         <div class="form-group">
                             <label for="name">Name</label>
@@ -38,7 +39,7 @@
                         </div>
                         <div class="form-group">
                             <label for="password">Password</label>
-                            <input type="text" class="form-control form-control-border" value="<?= isset($user['password']) ? $user['password'] : '' ?>" name="password" id="password" placeholder="Enter the password">
+                            <input type="text" class="form-control form-control-border" name="password" id="password" placeholder="Enter new password to change">
                         </div>
                         <div class="form-group">
                             <label for="role">Role</label>
@@ -50,14 +51,13 @@
                     </div>
                     <div class="card-footer d-flex justify-content-end">
                         <button type="submit" class="btn btn-primary mx-1">Update user</button>
-                        <button type="button" class="btn btn-danger">Cancel</button>
+                        <a href=<?= base_url('/admin/users') ?> class="btn btn-danger">Cancel</a>
                     </div>
+                    <!-- /.card-body -->
+                </form>
             </div>
-            <!-- /.card-body -->
-            </form>
-        </div>
-</div><!-- /.container-fluid -->
-</section>
+        </div><!-- /.container-fluid -->
+    </section>
 </div>
 <!-- ./wrapper -->
 <?= $this->endSection() ?>

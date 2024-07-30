@@ -59,7 +59,7 @@
                                                 <form action="/admin/update-user/<?= esc($user['user_id']) ?>" method="GET" style="display: inline;">
                                                     <button type="submit" class="btn btn-primary"><i class="fas fa-edit"></i></button>
                                                 </form>
-                                                <form action="/admin/delete-user/<?= esc($user['user_id']) ?>" method="POST" style="display: inline;">
+                                                <form action="/admin/update-user/<?= esc($user['user_id']) ?>" method="POST" style="display: inline;">
                                                     <input type="hidden" name="_method" value="DELETE" />
                                                     <button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i></button>
                                                 </form>
