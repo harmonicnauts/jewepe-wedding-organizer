@@ -10,8 +10,8 @@ $routes->get('/', 'Pages::home');
 $routes->get('about', 'Pages::about');
 $routes->get('catalogue', 'Pages::catalogue');
 $routes->get('login', 'AuthController::login');
-$routes->post('auth/authenticate', 'AuthController::authenticate');
 $routes->get('register', 'AuthController::register');
+$routes->post('auth/authenticate', 'AuthController::authenticate');
 $routes->post('auth/register', 'AuthController::store');
 $routes->get('auth/logout', 'AuthController::logout');
 
