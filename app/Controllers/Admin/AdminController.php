@@ -41,7 +41,6 @@ class AdminController extends BaseController {
     }
 
     public function addUserPage() {
-        $this->setupValidationRules(['email' => 'required|valid_email', 'name' => 'required', 'password' => 'required', 'role' => 'required']);
         return view('admin/add_user', ['validation' => $this->validation]);
     }
     public function addUserAction() {
@@ -61,13 +60,17 @@ class AdminController extends BaseController {
     }
 
     public function updateUserPage($id = null) {
-        $this->setupValidationRules(['email' => 'required|valid_email', 'name' => 'required', 'password' => 'required', 'role' => 'required']);
         $user = $this->userModel->getUser($id);
         return view('admin/update_user', ['user' => $user, 'validation' => $this->validation]);
     }
 
     public function updateUserAction($id = null) {
-        $this->setupValidationRules(['email' => 'required|valid_email', 'name' => 'required', 'password' => 'required', 'role' => 'required']);
+        $this->setupValidationRules(['email' => 'required|valid_email', 'name' => 'required', 'role' => 'required']);
+
+        if (!$this->validation->withRequest($this->request)->run()) {
+            $user = $this->userModel->getUser($id);
+            return view('admin/update_user', ['validation' => $this->validation, 'user' => $user]);
+        }
         $data =  [
             'name' => $this->request->getVar('name'),
             'email' => $this->request->getVar('email'),
@@ -82,33 +85,6 @@ class AdminController extends BaseController {
 
         return redirect()->to(base_url('/admin/users'));
     }
-
-
-
-    // public function updateUser($id = null) {
-    //     $this->setupValidationRules(['email' => 'required|valid_email', 'name' => 'required', 'role' => 'required']);
-    //     $data['user'] = $this->userModel->getUser($id);
-
-    //     if (!$this->validation->withRequest($this->request)->run()) {
-    //         return view('admin/update_user', ['data' => $data, 'validation' => $this->validation]);
-    //     } else {
-    //         $data = [
-    //             'name' => $this->request->getVar('name'),
-    //             'email' => $this->request->getVar('email'),
-    //             'role' => $this->request->getVar('role')
-    //         ];
-
-    //         // Check if the password field is set and not empty, then hash it
-    //         if ($this->request->getVar('password')) {
-    //             $data['password'] = password_hash($this->request->getVar('password'), PASSWORD_DEFAULT);
-    //         }
-
-    //         // Update the user data
-    //         $this->userModel->update($id, $data);
-
-    //         return redirect()->to(base_url('/admin/users'));
-    //     }
-    // }
 
     public function deleteUserAction($id = null) {
         $user = $this->userModel->find($id);
@@ -137,8 +113,14 @@ class AdminController extends BaseController {
             return view('admin/add_package', ['validation' => $this->validation]);
         } else {
             $package_img = $this->request->getFile('image');
-            $img_name = $package_img->getRandomName();
-            $package_img->move(ROOTPATH . 'public/uploads/package', $img_name);
+
+            if ($package_img && $package_img->isValid() && !$package_img->hasMoved()) {
+                $img_name = $package_img->getRandomName();
+                $package_img->move(ROOTPATH . 'public/uploads/package', $img_name);
+            } else {
+                $img_name = '';
+            }
+
 
             $data = [
                 'name' => $this->request->getVar('name'),
@@ -167,7 +149,7 @@ class AdminController extends BaseController {
         } else {
             $package_img = $this->request->getFile('image');
 
-            if ($package_img->isValid() && !$package_img->hasMoved()) {
+            if ($package_img && $package_img->isValid() && !$package_img->hasMoved()) {
                 $prev_image = $data['package']['image'];
                 $newName = $package_img->getRandomName();
 
@@ -185,7 +167,8 @@ class AdminController extends BaseController {
                 $data = [
                     'name' => $this->request->getVar('name'),
                     'description' => $this->request->getVar('description'),
-                    'price' => $this->request->getVar('price')
+                    'price' => $this->request->getVar('price'),
+                    'image' => $data['package']['image']
                 ];
             }
             $this->packageModel->updatePackage($id, $data);
@@ -201,8 +184,7 @@ class AdminController extends BaseController {
             $this->packageModel->deletePackage($id);
 
             $imagePath = ROOTPATH . 'public/uploads/package/' . $data['image'];
-
-            if (is_file($imagePath)) {
+            if (is_file($imagePath) && $data['image'] !== '') {
                 unlink($imagePath);
             }
         }
