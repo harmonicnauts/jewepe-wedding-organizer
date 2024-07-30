@@ -52,7 +52,9 @@
                                         <td><?= esc($package['description']) ?></td>
                                         <td><?= esc($package['price']) ?></td>
                                         <td class="d-flex justify-content-center">
-                                            <img src="<?= base_url("uploads/package/{$package['image']}") ?>" alt="Package Image" style="width:150px; height:150px;">
+                                            <img src="<?= ($package['image'] == '') ?
+                                                            base_url('uploads/placeholder.jpg') :
+                                                            base_url("uploads/package/{$package['image']}") ?>" alt="Package Image" style="width:150px; height:150px;border-radius: 15px;" '>
                                         </td>
                                         <td><?= esc($package['created_at']) ?></td>
                                         <td><?= esc($package['updated_at']) ?></td>

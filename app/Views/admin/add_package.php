@@ -9,6 +9,11 @@
             <div class="row mb-2">
                 <div class="col-sm-6">
                     <h1>Add a new Package</h1>
+                    <?php if (isset($validation)) : ?>
+                        <div style="color: red;">
+                            <?= $validation->listErrors() ?>
+                        </div>
+                    <?php endif; ?>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -24,19 +29,31 @@
                     <div class="card-body">
                         <div class="form-group">
                             <label for="name">Name</label>
-                            <input type="text" class="form-control form-control-border" name="name" id="name" placeholder="Enter the name">
+                            <input type="text" class="form-control form-control-border <?= ($validation->hasError('name')) ? 'is-invalid' : '' ?>" name=" name" id="name" placeholder="Enter the name">
+                            <div class="invalid-feedback">
+                                <?= $validation->getError('name'); ?>
+                            </div>
                         </div>
                         <div class="form-group">
                             <label for="price">Price</label>
-                            <input type="text" class="form-control form-control-border" name="price" id="price" placeholder="Enter the price">
+                            <input type="text" class="form-control form-control-border <?= ($validation->hasError('price')) ? 'is-invalid' : '' ?>" name=" price" id="price" placeholder="Enter the price">
+                            <div class="invalid-feedback">
+                                <?= $validation->getError('price'); ?>
+                            </div>
                         </div>
                         <div class="form-group">
                             <label for="description">Description</label>
-                            <input type="text" class="form-control form-control-border" name="description" id="description" placeholder="Enter the description">
+                            <input type="text" class="form-control form-control-border <?= ($validation->hasError('description')) ? 'is-invalid' : '' ?>" name=" description" id="description" placeholder="Enter the description">
+                            <div class="invalid-feedback">
+                                <?= $validation->getError('description'); ?>
+                            </div>
                         </div>
                         <div class="form-group">
                             <label for="image">Image</label>
-                            <input class="form-control" type="file" id="image" name="image">
+                            <input class="form-control <?= ($validation->hasError('image')) ? 'is-invalid' : '' ?>" type="file" id="image" name="image">
+                            <div class="invalid-feedback">
+                                <?= $validation->getError('image'); ?>
+                            </div>
                         </div>
                     </div>
                     <div class="card-footer d-flex justify-content-end">
