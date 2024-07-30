@@ -121,16 +121,16 @@ class AdminController extends BaseController {
     }
 
     // Manage Catalogue
-    public function catalogue() {
+    public function packages() {
         $data['packages'] = $this->packageModel->getAllPackage();
-        return view('admin/catalogue', $data);
+        return view('admin/packages', $data);
     }
 
     public function addPackagePage() {
         return view('admin/add_package');
     }
 
-    public function addPackage() {
+    public function addPackageAction() {
         $this->setupValidationRules(['name' => 'required', 'price' => 'required|numeric']);
 
         if (!$this->validation->withRequest($this->request)->run()) {
@@ -148,7 +148,7 @@ class AdminController extends BaseController {
             ];
             $this->packageModel->addPackage($data);
 
-            return redirect()->to(base_url('/admin/catalogue'));
+            return redirect()->to(base_url('/admin/packages'));
         }
     }
 
@@ -157,7 +157,7 @@ class AdminController extends BaseController {
         return view('admin/update_package', ['data' => $data, 'validation' => $this->validation]);
     }
 
-    public function updatePackage($id = null) {
+    public function updatePackageAction($id = null) {
         $this->setupValidationRules(['name' => 'required', 'price' => 'required|numeric']);
 
         $data['package'] = $this->packageModel->getPackage($id);
@@ -190,11 +190,11 @@ class AdminController extends BaseController {
             }
             $this->packageModel->updatePackage($id, $data);
 
-            return redirect()->to(base_url('/admin/catalogue'));
+            return redirect()->to(base_url('/admin/packages'));
         }
     }
 
-    public function deletePackage($id = null) {
+    public function deletePackageAction($id = null) {
         $data = $this->packageModel->getPackage($id);
 
         if ($data) {
@@ -206,7 +206,7 @@ class AdminController extends BaseController {
                 unlink($imagePath);
             }
         }
-        return redirect()->to(base_url('/admin/catalogue'));
+        return redirect()->to(base_url('/admin/packages'));
     }
 
     // Manage Orders

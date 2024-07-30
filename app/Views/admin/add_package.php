@@ -20,7 +20,7 @@
             <!-- general form elements -->
             <div class="card card-primary">
                 <!-- /.card-header -->
-                <form action="/admin/addpackage" method="post" enctype="multipart/form-data">
+                <form action="/admin/add-package" method="post" enctype="multipart/form-data">
                     <div class="card-body">
                         <div class="form-group">
                             <label for="name">Name</label>
@@ -41,7 +41,7 @@
                     </div>
                     <div class="card-footer d-flex justify-content-end">
                         <button type="submit" class="btn btn-primary mx-1">Add new package</button>
-                        <button type="button" class="btn btn-danger">Cancel</button>
+                        <a href=<?= base_url('/admin/packages') ?> class="btn btn-danger">Cancel</a>
                     </div>
             </div>
             <!-- /.card-body -->

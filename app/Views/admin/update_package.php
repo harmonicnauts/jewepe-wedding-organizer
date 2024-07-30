@@ -20,7 +20,8 @@
             <!-- general form elements -->
             <div class="card card-primary">
                 <!-- /.card-header -->
-                <form action="/admin/updatepackage/<?= $data['package']['package_id'] ?>" method="post" enctype="multipart/form-data">
+                <form action="/admin/update-package/<?= $data['package']['package_id'] ?>" method="post" enctype="multipart/form-data">
+                    <input type="hidden" name="_method" value="PUT">
                     <div class="card-body">
                         <div class="form-group">
                             <label for="name">Name</label>
@@ -38,17 +39,21 @@
                             <label for="image">Image</label>
                             <input class="form-control" type="file" id="image" name="image">
                         </div>
+                        <div>
+                            <p>current image : </p>
+                            <!-- uploads/package/{$package['image']} -->
+                            <img src="<?= base_url('uploads/package/' . (isset($data['package']['image']) ? $data['package']['image'] : '')) ?>" alt="Package Image" style="width:150px; height:150px;">
+                        </div>
                     </div>
                     <div class="card-footer d-flex justify-content-end">
                         <button type="submit" class="btn btn-primary mx-1">Update package</button>
-                        <button type="button" class="btn btn-danger">Cancel</button>
+                        <a href=<?= base_url('/admin/packages') ?> class="btn btn-danger">Cancel</a>
                     </div>
+                    <!-- /.card-body -->
+                </form>
             </div>
-            <!-- /.card-body -->
-            </form>
-        </div>
-</div><!-- /.container-fluid -->
-</section>
+        </div><!-- /.container-fluid -->
+    </section>
 </div>
 <!-- ./wrapper -->
 <?= $this->endSection() ?>

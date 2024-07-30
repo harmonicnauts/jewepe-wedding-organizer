@@ -22,7 +22,7 @@
                     </a>
                 </li>
                 <li class="nav-item py-3">
-                    <a href="<?= base_url('admin/catalogue') ?>" class="nav-link">
+                    <a href="<?= base_url('admin/packages') ?>" class="nav-link">
                         <i class="nav-icon fas fa-box-open"></i>
                         <p>
                             Manage Catalogue

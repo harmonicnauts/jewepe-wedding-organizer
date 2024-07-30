@@ -53,7 +53,7 @@
                         </div>
                         <div class="card-footer d-flex justify-content-end">
                             <button type="submit" class="btn btn-primary mx-1">Add new user</button>
-                            <button type="button" class="btn btn-danger">Cancel</button>
+                            <a href=<?= base_url('/admin/users') ?> class="btn btn-danger">Cancel</a>
                         </div>
                     </div>
                     <!-- /.card-body -->

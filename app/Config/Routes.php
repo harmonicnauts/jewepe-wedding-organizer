@@ -29,10 +29,12 @@ $routes->group('admin', ['filter' => 'adminauth', 'namespace' => 'App\Controller
     $routes->put('update-user/(:num)', 'AdminController::updateUserAction/$1');
     $routes->delete('update-user/(:num)', 'AdminController::deleteUserAction/$1');
 
-    $routes->get('catalogue', 'AdminController::catalogue');
-    $routes->match(['get', 'post'], 'addpackage', 'AdminController::addPackage');
-    $routes->post('updatepackage/(:num)', 'AdminController::updatePackage/$1');
-    $routes->post('deletepackage/(:num)', 'AdminController::deletePackage/$1');
+    $routes->get('packages', 'AdminController::packages'); // All packages
+    $routes->get('add-package', 'AdminController::addPackagePage'); // Add package pages
+    $routes->post('add-package', 'AdminController::addPackageAction'); // Add packages action
+    $routes->get('update-package/(:num)', 'AdminController::updatePackagePage/$1'); // Update Package Page
+    $routes->put('update-package/(:num)', 'AdminController::updatePackageAction/$1'); // Update Package Action
+    $routes->delete('update-package/(:num)', 'AdminController::deletePackageAction/$1'); // Delete Package
 
     $routes->get('orders', 'AdminController::orders');
     $routes->put('changeorderstatus/(:num)', 'AdminController::changeOrderStatus/$1');

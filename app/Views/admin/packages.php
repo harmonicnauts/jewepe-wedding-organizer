@@ -25,7 +25,7 @@
         <section class="content">
             <div class="card">
                 <div class="card-header d-flex justify-content-end">
-                    <a href="<?= base_url('/admin/addpackage') ?>" class="btn btn-primary">Add new package</a>
+                    <a href="<?= base_url('/admin/add-package') ?>" class="btn btn-primary">Add new package</a>
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
@@ -58,10 +58,11 @@
                                         <td><?= esc($package['updated_at']) ?></td>
                                         <td>
                                             <div class="btn-group">
-                                                <form action="/admin/updatepackage/<?= esc($package['package_id']) ?>" method="POST" style="display: inline;">
+                                                <form action="/admin/update-package/<?= esc($package['package_id']) ?>" method="GET" style="display: inline;">
                                                     <button type="submit" class="btn btn-primary"><i class="fas fa-edit"></i></button>
                                                 </form>
-                                                <form action="/admin/deletepackage/<?= esc($package['package_id']) ?>" method="POST" style="display: inline;">
+                                                <form action="/admin/update-package/<?= esc($package['package_id']) ?>" method="POST" style="display: inline;">
+                                                    <input type="hidden" name="_method" value="DELETE" />
                                                     <button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i></button>
                                                 </form>
                                             </div>
