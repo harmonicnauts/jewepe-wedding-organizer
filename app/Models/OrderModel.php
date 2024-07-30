@@ -21,7 +21,11 @@ class OrderModel extends Model {
         return $this->find($id);
     }
     public function getAllOrder() {
-        return $this->findAll();
+        $this->select('orders.*, users.email, packages.name');
+        $this->join('users', 'users.user_id = orders.user_id');
+        $this->join('packages', 'packages.package_id = orders.package_id');
+        $data = $this->findAll();
+        return $data;
     }
     public function updateOrder($id, $data) {
         return $this->where('order_id', $id)->set($data)->update();

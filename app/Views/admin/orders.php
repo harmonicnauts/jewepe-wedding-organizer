@@ -31,8 +31,8 @@
                         <thead>
                             <tr>
                                 <th>Order Id</th>
-                                <th>User Id</th>
-                                <th>Package Id</th>
+                                <th>Email</th>
+                                <th>Package</th>
                                 <th>Event Date</th>
                                 <th>Status</th>
                                 <th>Created At</th>
@@ -46,8 +46,8 @@
                                     <?php if (esc($order['visibility'])) : ?>
                                         <tr>
                                             <td><?= esc($order['order_id']) ?></td>
-                                            <td><?= esc($order['user_id']) ?></td>
-                                            <td><?= esc($order['package_id']) ?></td>
+                                            <td><?= esc($order['email']) ?></td>
+                                            <td><?= esc($order['name']) ?></td>
                                             <td><?= esc($order['event_date']) ?></td>
                                             <td><?= esc($order['status']) ?></td>
                                             <td><?= esc($order['created_at']) ?></td>
@@ -78,8 +78,8 @@
                         <tfoot>
                             <tr>
                                 <th>Order Id</th>
-                                <th>User Id</th>
-                                <th>Package Id</th>
+                                <th>Email</th>
+                                <th>Package</th>
                                 <th>Event Date</th>
                                 <th>Status</th>
                                 <th>Created At</th>
