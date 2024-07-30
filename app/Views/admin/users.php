@@ -26,7 +26,7 @@
         <section class="content">
             <div class="card">
                 <div class="card-header d-flex justify-content-end">
-                    <a href="<?= base_url('/admin/adduser') ?>" class="btn btn-primary">Add new user</a>
+                    <a href="<?= base_url('/admin/add-user') ?>" class="btn btn-primary">Add new user</a>
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
@@ -56,10 +56,11 @@
                                         <td><?= esc($user['updated_at']) ?></td>
                                         <td>
                                             <div class="btn-group">
-                                                <form action="/admin/updateuser/<?= esc($user['user_id']) ?>" method="POST" style="display: inline;">
+                                                <form action="/admin/update-user/<?= esc($user['user_id']) ?>" method="GET" style="display: inline;">
                                                     <button type="submit" class="btn btn-primary"><i class="fas fa-edit"></i></button>
                                                 </form>
-                                                <form action="/admin/deleteuser/<?= esc($user['user_id']) ?>" method="POST" style="display: inline;">
+                                                <form action="/admin/delete-user/<?= esc($user['user_id']) ?>" method="POST" style="display: inline;">
+                                                    <input type="hidden" name="_method" value="DELETE" />
                                                     <button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i></button>
                                                 </form>
                                             </div>

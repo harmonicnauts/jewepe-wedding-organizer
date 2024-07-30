@@ -21,7 +21,7 @@
             <!-- general form elements -->
             <div class="card card-primary">
                 <!-- /.card-header -->
-                <form action="/admin/adduser" method="post" enctype="multipart/form-data">
+                <form action="/admin/add-user" method="post" enctype="multipart/form-data">
                     <div class="card-body">
                         <div class="form-group">
                             <label for="name">Name</label>

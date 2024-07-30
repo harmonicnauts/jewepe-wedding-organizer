@@ -23,10 +23,11 @@ $routes->group('admin', ['filter' => 'adminauth', 'namespace' => 'App\Controller
     $routes->get('dashboard', 'AdminController::dashboard');
 
     $routes->get('users', 'AdminController::users');
-    $routes->get('adduser', 'AdminController::addUserPage');
-    $routes->post('adduser', 'AdminController::addUser');
-    $routes->post('updateuser/(:num)', 'AdminController::updateUser/$1');
-    $routes->post('deleteuser/(:num)', 'AdminController::deleteUser/$1');
+    $routes->get('add-user', 'AdminController::addUserPage');
+    $routes->post('add-user', 'AdminController::addUserAction');
+    $routes->get('update-user/(:num)', 'AdminController::updateUserPage/$1');
+    $routes->put('update-user/(:num)', 'AdminController::updateUserAction/$1');
+    $routes->delete('update-user/(:num)', 'AdminController::deleteUserAction/$1');
 
     $routes->get('catalogue', 'AdminController::catalogue');
     $routes->match(['get', 'post'], 'addpackage', 'AdminController::addPackage');
