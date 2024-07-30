@@ -25,7 +25,7 @@
                     <a href="<?= base_url('admin/packages') ?>" class="nav-link">
                         <i class="nav-icon fas fa-box-open"></i>
                         <p>
-                            Manage Catalogue
+                            Manage Packages
                         </p>
                     </a>
                 </li>
