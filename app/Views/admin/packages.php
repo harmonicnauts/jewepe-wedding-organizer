@@ -60,42 +60,42 @@
                                         <td><?= esc($package['updated_at']) ?></td>
                                         <td>
                                             <div class="btn-group">
-                                                <form action="/admin/update-package/<?= esc($package['package_id']) ?>" method="GET" style="display: inline;">
-                                                    <button type="submit" class="btn btn-primary"><i class="fas fa-edit"></i></button>
-                                                </form>
-                                                <form action="/admin/update-package/<?= esc($package['package_id']) ?>" method="POST" style="display: inline;">
-                                                    <input type="hidden" name="_method" value="DELETE" />
-                                                    <button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i></button>
-                                                </form>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                <?php endforeach; ?>
-                            <?php else : ?>
-                                <tr>
-                                    <td colspan="7">No Packages found.</td>
-                                </tr>
-                            <?php endif; ?>
-                        </tbody>
-                        <tfoot>
-                            <tr>
-                                <th>Id</th>
-                                <th>Name</th>
-                                <th>Description</th>
-                                <th>Price</th>
-                                <th>Image</th>
-                                <th>Created At</th>
-                                <th>Last Updated</th>
-                                <th>Action</th>
-                            </tr>
-                        </tfoot>
-                    </table>
+                                                <form action="/admin/update-package/<?= esc($package['package_id']) ?>" method="GET" style="display: inline;" onsubmit="return confirm(' Are you sure you want to delete this package?');">
+                                            <button type="submit" class="btn btn-primary"><i class="fas fa-edit"></i></button>
+                                            </form>
+                                            <form action="/admin/update-package/<?= esc($package['package_id']) ?>" method="POST" style="display: inline;">
+                                                <input type="hidden" name="_method" value="DELETE" />
+                                                <button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i></button>
+                                            </form>
                 </div>
-                <!-- /.card-body -->
+                </td>
+                </tr>
+            <?php endforeach; ?>
+        <?php else : ?>
+            <tr>
+                <td colspan="7">No Packages found.</td>
+            </tr>
+        <?php endif; ?>
+        </tbody>
+        <tfoot>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th>Image</th>
+                <th>Created At</th>
+                <th>Last Updated</th>
+                <th>Action</th>
+            </tr>
+        </tfoot>
+        </table>
             </div>
-        </section>
-        <!-- /.content -->
+            <!-- /.card-body -->
     </div>
+    </section>
+    <!-- /.content -->
+</div>
 </div>
 <!-- ./wrapper -->
 <?= $this->endSection() ?>
