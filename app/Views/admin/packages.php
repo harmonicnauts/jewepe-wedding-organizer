@@ -50,7 +50,7 @@
                                         <td><?= esc($package['package_id']) ?></td>
                                         <td><?= esc($package['name']) ?></td>
                                         <td><?= esc($package['description']) ?></td>
-                                        <td><?= esc($package['price']) ?></td>
+                                        <td><?= 'IDR ' . number_format($package['price'], 0, ',', '.') ?></td>
                                         <td class="d-flex justify-content-center">
                                             <img src="<?= ($package['image'] == '') ?
                                                             base_url('uploads/placeholder.jpg') :
