@@ -56,7 +56,7 @@ class AdminController extends BaseController {
                 'role' => $this->request->getVar('role'),
             ];
             $this->userModel->addUser($data);
-            return redirect()->to(base_url('/admin/users'))->with('success', 'User Added successfully');;
+            return redirect()->to(base_url('/admin/users'))->with('success', 'User Added successfully');
         }
     }
 
