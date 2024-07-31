@@ -5,22 +5,25 @@ namespace App\Controllers;
 use App\Models\UserModel;
 
 class AuthController extends BaseController {
+    public function __construct() {
+        $this->userModel = new UserModel();
+        $this->validation = \Config\Services::validation();
+    }
     public function login() {
-        return view('auth/login');
+        return view('auth/login', ['validation' => $this->validation]);
     }
 
     public function register() {
-        return view('auth/register');
+        return view('auth/register', ['validation' => $this->validation]);
     }
 
     // Authenticate : Fix some lil bugs and we're good to go -> DONE
     public function authenticate() {
         $session = session();
-        $userModel = new UserModel();
         $email = $this->request->getVar('email');
         $password = $this->request->getVar('password');
 
-        $user = $userModel->where('email', $email)->first();
+        $user =  $this->userModel->where('email', $email)->first();
 
         if ($user && password_verify($password, $user['password'])) {
             $sessionData = [
@@ -31,28 +34,25 @@ class AuthController extends BaseController {
                 'isLoggedIn' => true,
             ];
             $session->set($sessionData);
-            return redirect()->to(base_url('/admin/dashboard'));
+            return redirect()->to(base_url('/'))->with('success', 'Logged in!');
         } else {
-            $session->setFlashdata('error', 'Invalid email or password');
-            return redirect()->to(base_url('/login'));
+            return redirect()->to(base_url('/login'))->with('error', 'Invalid email or password');
         }
     }
 
     // Store new user : DONE
     public function store() {
-        $validation = \Config\Services::validation();
-
-        $validation->setRules([
-            'name' => 'required',
+        $validationRules = [
             'email' => 'required|valid_email',
-            'password' => 'required|min_length[6]',
-        ]);
+            'name' => 'required',
+            'password' => 'required|min_length[6]'
+        ];
+        $this->setupValidationRules($validationRules);
 
-        if (!$validation->withRequest($this->request)->run()) {
-            return view('auth/register', ['validation' => $validation]);
+        if (!$this->validation->withRequest($this->request)->run()) {
+            session()->setFlashdata('error', 'Invalid Input');
+            return view('auth/register', ['validation' => $this->validation]);
         } else {
-            $userModel = new UserModel();
-
             $data = [
                 'name' => $this->request->getVar('name'),
                 'email' => $this->request->getVar('email'),
@@ -60,16 +60,21 @@ class AuthController extends BaseController {
                 'role' => 'user',
             ];
 
-            $userModel->save($data);
+            $this->userModel->addUser($data);
 
-            return redirect()->to(base_url('/login'))->with('success', 'Registration successful. Please login.');
+            return redirect()->to(base_url('/login'))->with('success', 'User added successfully');
         }
     }
+
 
     // Logout : DONE
     public function logout() {
         $session = session();
         $session->destroy();
-        return redirect()->to(base_url('/login'));
+        return redirect()->to(base_url('/login'))->with('success', 'Logged out!');
+    }
+
+    private function setupValidationRules($rules) {
+        $this->validation->setRules($rules);
     }
 }
