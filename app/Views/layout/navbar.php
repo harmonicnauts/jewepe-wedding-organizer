@@ -23,11 +23,17 @@
                             <a class="nav-link" href="<?= base_url('admin/dashboard') ?>">Admin Dashboard</a>
                         </li>
                     <?php endif; ?>
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                         <a class="nav-link" href="/user/profile"><?= session()->get('name') ?></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/auth/logout">Logout</a>
+                    </li> -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <?= session()->get('name') ?>
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="userDropdown">
+                            <li><a class="dropdown-item" href="<?= base_url('history/') ?><?= session()->get('user_id') ?>">Show Orders</a></li>
+                            <li><a class="dropdown-item" href="<?= base_url('auth/logout') ?>">Logout</a></li>
+                        </ul>
                     </li>
                 <?php else : ?>
                     <li class="nav-item">

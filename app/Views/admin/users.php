@@ -29,7 +29,7 @@
                     <a href="<?= base_url('/admin/add-user') ?>" class="btn btn-primary">Add new user</a>
                 </div>
                 <!-- /.card-header -->
-                <div class="card-body">
+                <div class="card-body" id="datatable-wrapper">
                     <table id="datatable" class="table table-bordered table-striped">
                         <thead>
                             <tr>

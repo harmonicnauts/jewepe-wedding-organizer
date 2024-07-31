@@ -36,14 +36,12 @@ class UserController extends BaseController {
 
 
     public function booking() {
-        $packageModel = new PackageModel();
-        $data['packages'] = $packageModel->findAll();
+        $data['packages'] = $this->packageModel->findAll();
 
         return view('pages/booking', $data);
     }
 
     public function bookPackage() {
-        $orderModel = new OrderModel();
         $data = [
             'user_id' => session()->get('user_id'),
             'package_id' => $this->request->getPost('package_id'),
@@ -53,7 +51,7 @@ class UserController extends BaseController {
             'created_at' => date('Y-m-d H:i:s')
         ];
 
-        $orderModel->save($data);
+        $this->orderModel->save($data);
 
         // Send email to user (simplified example)
         $email = \Config\Services::email();
@@ -63,5 +61,15 @@ class UserController extends BaseController {
         $email->send();
 
         return redirect()->to('user/profile');
+    }
+
+    public function history($id = null) {
+        $data['orders']  = $this->orderModel->getUserOrders($id);
+        return view('pages/history', $data);
+    }
+
+    public function historyDetail($orderId = null) {
+        $data['order'] = $this->orderModel->getOrderById($orderId);
+        return view('pages/history_detail', $data);
     }
 }

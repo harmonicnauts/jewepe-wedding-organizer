@@ -26,7 +26,7 @@
         <section class="content">
             <div class="card">
                 <!-- /.card-header -->
-                <div class="card-body">
+                <div class="card-body" id="datatable-wrapper">
                     <table id="datatable" class="table table-bordered table-striped">
                         <thead>
                             <tr>

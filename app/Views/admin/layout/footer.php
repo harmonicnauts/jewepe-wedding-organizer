@@ -44,10 +44,14 @@
     $(function() {
         $("#datatable").DataTable({
             "responsive": true,
-            "lengthChange": false,
-            "autoWidth": false,
+            "lengthChange": true,
+            "autoWidth": true,
+            "lengthMenu": [
+                [5, 10, 25, 50, -1],
+                ['5', '10', '25', '50', 'All']
+            ],
             "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-        }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+        }).buttons().container().appendTo('#datatable-wrapper .col-md-6:eq(0)');
     });
 
     // DropzoneJS Demo Code Start

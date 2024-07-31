@@ -18,6 +18,10 @@ $routes->get('auth/logout', 'AuthController::logout');
 $routes->get('order/(:num)', 'UserController::order/$1');
 $routes->post('order/(:num)', 'UserController::saveOrder/$1');
 
+$routes->get('history/(:num)', 'UserController::history/$1');
+$routes->get('history-detail/(:num)', 'UserController::historyDetail/$1');
+
+
 $routes->group('admin', ['filter' => 'adminauth', 'namespace' => 'App\Controllers\Admin'], function ($routes) {
 
     $routes->get('dashboard', 'AdminController::dashboard');
