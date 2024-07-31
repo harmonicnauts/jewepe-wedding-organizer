@@ -43,7 +43,7 @@
                         </div>
                         <div class="form-group">
                             <label for="description">Description</label>
-                            <input type="text" class="form-control form-control-border <?= ($validation->hasError('description')) ? 'is-invalid' : '' ?>" name=" description" id="description" placeholder="Enter the description">
+                            <textarea class="form-control form-control-border <?= ($validation->hasError('description')) ? 'is-invalid' : '' ?>" name=" description" id="summernote"></textarea>
                             <div class="invalid-feedback">
                                 <?= $validation->getError('description'); ?>
                             </div>
@@ -66,6 +66,6 @@
         </div>
 </div><!-- /.container-fluid -->
 </section>
-</div>
 <!-- ./wrapper -->
+
 <?= $this->endSection() ?>

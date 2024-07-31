@@ -6,12 +6,31 @@
 <script src="<?= $assets_dir ?>plugins/jquery/jquery.min.js"></script>
 <!-- jQuery UI 1.11.4 -->
 <script src="<?= $assets_dir ?>plugins/jquery-ui/jquery-ui.min.js"></script>
+<!-- Summernote -->
+<script type="text/javascript" src="<?= $assets_dir ?>plugins/summernote/summernote-lite.min.js"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
 <script>
     $.widget.bridge('uibutton', $.ui.button)
 </script>
 
 <script>
+    $(document).ready(function() {
+        $('#summernote').summernote({
+            tabsize: 2,
+            height: 120,
+            toolbar: [
+                ['style', ['style']],
+                ['font', ['bold', 'underline', 'clear']],
+                ['color', ['color']],
+                ['para', ['ul', 'ol', 'paragraph']],
+                ['table', ['table']],
+                ['insert', ['link', 'picture', 'video']],
+                ['view', ['fullscreen', 'codeview', 'help']]
+            ]
+        });
+        $('#summernote').summernote('code', document.getElementById("summernote").value);
+    })
+
     // Datatable code
     $(function() {
         $("#datatable").DataTable({
@@ -78,7 +97,7 @@
     // DropzoneJS Demo Code End
 </script>
 
-<!-- Bootstrap 4 -->
+<!-- Bootstrap 5 -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
 <!-- ChartJS -->
@@ -108,8 +127,6 @@
 <script src="<?= $assets_dir ?>plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
 <!-- Tempusdominus Bootstrap 4 -->
 <script src="<?= $assets_dir ?>plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
-<!-- Summernote -->
-<script src="<?= $assets_dir ?>plugins/summernote/summernote-bs4.min.js"></script>
 <!-- overlayScrollbars -->
 <script src="<?= $assets_dir ?>plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
 <!-- AdminLTE App -->

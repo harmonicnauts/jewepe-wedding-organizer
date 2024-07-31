@@ -33,7 +33,7 @@
     <!-- Daterange picker -->
     <link rel="stylesheet" href="<?= $assets_dir ?>plugins/daterangepicker/daterangepicker.css">
     <!-- summernote -->
-    <link rel="stylesheet" href="<?= $assets_dir ?>plugins/summernote/summernote-bs4.min.css">
+    <link rel="stylesheet" href="<?= $assets_dir ?>plugins/summernote/summernote-lite.min.css">
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">

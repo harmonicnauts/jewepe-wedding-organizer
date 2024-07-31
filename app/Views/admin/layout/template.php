@@ -8,4 +8,6 @@
     <?= $this->renderSection('content') ?>
 </div>
 
+<?= $this->renderSection('additional-scripts') ?>
+
 <?= $this->include('admin/layout/footer') ?>

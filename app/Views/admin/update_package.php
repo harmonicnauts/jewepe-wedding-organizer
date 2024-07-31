@@ -38,7 +38,7 @@
                         </div>
                         <div class="form-group">
                             <label for="description">Description</label>
-                            <input type="text" class="form-control form-control-border <?= ($validation->hasError('description')) ? 'is-invalid' : '' ?>" value="<?= isset($data['package']['description']) ? $data['package']['description'] : '' ?>" name="description" id="description" placeholder="Enter the description">
+                            <input type="text" class="form-control form-control-border <?= ($validation->hasError('description')) ? 'is-invalid' : '' ?>" name="description" id="summernote" placeholder="Enter the description">
                         </div>
                         <div class="form-group">
                             <label for="image">Image</label>

@@ -60,12 +60,12 @@
                                         <td><?= esc($package['updated_at']) ?></td>
                                         <td>
                                             <div class="btn-group">
-                                                <form action="/admin/update-package/<?= esc($package['package_id']) ?>" method="GET" style="display: inline;" onsubmit="return confirm(' Are you sure you want to delete this package?');">
+                                                <form action="/admin/update-package/<?= esc($package['package_id']) ?>" method="GET" style="display: inline;">
                                             <button type="submit" class="btn btn-primary"><i class="fas fa-edit"></i></button>
                                             </form>
-                                            <form action="/admin/update-package/<?= esc($package['package_id']) ?>" method="POST" style="display: inline;">
-                                                <input type="hidden" name="_method" value="DELETE" />
-                                                <button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i></button>
+                                            <form action="/admin/update-package/<?= esc($package['package_id']) ?>" method="POST" style="display: inline;" onsubmit="return confirm(' Are you sure you want to delete this package?');">
+                                            <input type="hidden" name="_method" value="DELETE" />
+                                            <button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i></button>
                                             </form>
                 </div>
                 </td>

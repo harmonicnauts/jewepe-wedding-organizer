@@ -103,7 +103,8 @@ class AdminController extends BaseController {
     }
 
     public function addPackagePage() {
-        return view('admin/add_package');
+        $this->setupValidationRules(['name' => 'required', 'price' => 'required|numeric']);
+        return view('admin/add_package', ['validation' => $this->validation]);
     }
 
     public function addPackageAction() {

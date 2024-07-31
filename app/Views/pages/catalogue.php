@@ -25,7 +25,7 @@
                                 </a>
                                 <div class="card-body">
                                     <h3 class="mb-4 text-truncate">
-                                        <a href="<?= base_url('order/') ?>.<?= $package['package_id'] ?>" class="text-inherit "><?= $package['name'] ?></a>
+                                        <a href="<?= base_url('order/') ?><?= $package['package_id'] ?>" class="text-inherit "><?= $package['name'] ?></a>
                                     </h3>
                                     <div class="mb-4">
                                         <div class="mb-3 lh-1">
