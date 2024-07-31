@@ -28,7 +28,17 @@
                 ['view', ['fullscreen', 'codeview', 'help']]
             ]
         });
-    })
+    });
+
+    $(document).ready(function() {
+        <?php if (session()->getFlashdata('success')) : ?>
+            toastr.success("<?= session()->getFlashdata('success') ?>");
+        <?php endif; ?>
+
+        <?php if (session()->getFlashdata('error')) : ?>
+            toastr.error("<?= session()->getFlashdata('error') ?>");
+        <?php endif; ?>
+    });
 
     // Datatable code
     $(function() {
@@ -126,6 +136,8 @@
 <script src="<?= $assets_dir ?>plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
 <!-- Tempusdominus Bootstrap 4 -->
 <script src="<?= $assets_dir ?>plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+<!-- Toastr -->
+<script src="<?= $assets_dir ?>plugins/toastr/toastr.min.js"></script>
 <!-- overlayScrollbars -->
 <script src="<?= $assets_dir ?>plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
 <!-- AdminLTE App -->

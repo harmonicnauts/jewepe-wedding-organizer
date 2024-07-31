@@ -34,6 +34,8 @@
     <link rel="stylesheet" href="<?= $assets_dir ?>plugins/daterangepicker/daterangepicker.css">
     <!-- summernote -->
     <link rel="stylesheet" href="<?= $assets_dir ?>plugins/summernote/summernote-lite.min.css">
+    <!-- Toastr -->
+    <link rel="stylesheet" href="<?= $assets_dir ?>plugins/toastr/toastr.min.css">
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">

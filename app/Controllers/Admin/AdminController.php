@@ -46,6 +46,7 @@ class AdminController extends BaseController {
     public function addUserAction() {
         $this->setupValidationRules(['email' => 'required|valid_email', 'name' => 'required', 'password' => 'required', 'role' => 'required']);
         if (!$this->validation->withRequest($this->request)->run()) {
+            session()->setFlashdata('error', 'Invalid Input');
             return view('admin/add_user', ['validation' => $this->validation]);
         } else {
             $data = [
@@ -55,7 +56,7 @@ class AdminController extends BaseController {
                 'role' => $this->request->getVar('role'),
             ];
             $this->userModel->addUser($data);
-            return redirect()->to(base_url('/admin/users'));
+            return redirect()->to(base_url('/admin/users'))->with('success', 'User Added successfully');;
         }
     }
 
@@ -69,6 +70,7 @@ class AdminController extends BaseController {
 
         if (!$this->validation->withRequest($this->request)->run()) {
             $user = $this->userModel->getUser($id);
+            session()->setFlashdata('error', 'Invalid Input');
             return view('admin/update_user', ['validation' => $this->validation, 'user' => $user]);
         }
         $data =  [
@@ -83,7 +85,7 @@ class AdminController extends BaseController {
 
         $this->userModel->updateUser($id, $data);
 
-        return redirect()->to(base_url('/admin/users'));
+        return redirect()->to(base_url('/admin/users'))->with('success', 'User updated successfully');;
     }
 
     public function deleteUserAction($id = null) {
@@ -111,6 +113,7 @@ class AdminController extends BaseController {
         $this->setupValidationRules(['name' => 'required', 'price' => 'required|numeric']);
 
         if (!$this->validation->withRequest($this->request)->run()) {
+            session()->setFlashdata('error', 'Invalid Input');
             return view('admin/add_package', ['validation' => $this->validation]);
         } else {
             $package_img = $this->request->getFile('image');
@@ -131,7 +134,7 @@ class AdminController extends BaseController {
             ];
             $this->packageModel->addPackage($data);
 
-            return redirect()->to(base_url('/admin/packages'));
+            return redirect()->to(base_url('/admin/packages'))->with('success', 'Package added successfully');;
         }
     }
 
@@ -146,6 +149,7 @@ class AdminController extends BaseController {
         $data['package'] = $this->packageModel->getPackage($id);
 
         if (!$this->validation->withRequest($this->request)->run()) {
+            session()->setFlashdata('error', 'Invalid Input');
             return view('admin/update_package', ['data' => $data, 'validation' => $this->validation]);
         } else {
             $package_img = $this->request->getFile('image');
@@ -174,7 +178,7 @@ class AdminController extends BaseController {
             }
             $this->packageModel->updatePackage($id, $data);
 
-            return redirect()->to(base_url('/admin/packages'));
+            return redirect()->to(base_url('/admin/packages'))->with('success', 'Package added successfully');;
         }
     }
 
@@ -189,7 +193,7 @@ class AdminController extends BaseController {
                 unlink($imagePath);
             }
         }
-        return redirect()->to(base_url('/admin/packages'));
+        return redirect()->to(base_url('/admin/packages'))->with('success', 'Package deleted successfully');;
     }
 
     // Manage Orders
