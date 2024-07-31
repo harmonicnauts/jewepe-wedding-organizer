@@ -12,13 +12,25 @@
 
                         <h3 class="mb-5">Sign in</h3>
 
+                        <?php if (isset($validation)) : ?>
+                            <div style="color: red;">
+                                <?= $validation->listErrors() ?>
+                            </div>
+                        <?php endif; ?>
+
                         <div data-mdb-input-init class="form-outline mb-4">
-                            <input type="email" name="email" id="email" class="form-control form-control-lg" required />
+                            <input type="email" name="email" id="email" class="form-control form-control-lg <?= ($validation->hasError('email')) ? 'is-invalid' : '' ?>" required />
+                            <div class="invalid-feedback">
+                                <?= $validation->getError('name'); ?>
+                            </div>
                             <label class="form-label" for="email">Email</label>
                         </div>
 
                         <div data-mdb-input-init class="form-outline mb-4">
-                            <input type="password" name="password" id="password" class="form-control form-control-lg" required />
+                            <input type="password" name="password" id="password" class="form-control form-control-lg <?= ($validation->hasError('password')) ? 'is-invalid' : '' ?>" required />
+                            <div class="invalid-feedback">
+                                <?= $validation->getError('password'); ?>
+                            </div>
                             <label class="form-label" for="password">Password</label>
                         </div>
 

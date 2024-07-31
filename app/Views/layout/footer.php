@@ -24,6 +24,16 @@
             "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
         }).buttons().container().appendTo('#datatable-wrapper .col-md-6:eq(0)');
     });
+
+    $(document).ready(function() {
+        <?php if (session()->getFlashdata('success')) : ?>
+            toastr.success("<?= session()->getFlashdata('success') ?>");
+        <?php endif; ?>
+
+        <?php if (session()->getFlashdata('error')) : ?>
+            toastr.error("<?= session()->getFlashdata('error') ?>");
+        <?php endif; ?>
+    });
 </script>
 
 <!-- DataTables  & Plugins -->
@@ -39,6 +49,7 @@
 <script src="<?= $assets_dir ?>plugins/datatables-buttons/js/buttons.html5.min.js"></script>
 <script src="<?= $assets_dir ?>plugins/datatables-buttons/js/buttons.print.min.js"></script>
 <script src="<?= $assets_dir ?>plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+<script src="<?= $assets_dir ?>plugins/toastr/toastr.min.js"></script>
 
 </body>
 
