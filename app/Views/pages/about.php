@@ -7,8 +7,7 @@
     <div class="container section-title mt-4" data-aos="fade-up">
         <h2>About the Developer</h2>
         <p>
-            Necessitatibus eius consequatur ex aliquid fuga eum quidem sint
-            consectetur velit
+            Final year Informatics student from Gunadarma University.
         </p>
     </div>
     <!-- End Section Title -->
@@ -21,10 +20,9 @@
                     <h4>Rachmat</h4>
                     <span>51420022 / 4IA01</span>
                     <div class="social">
-                        <a href=""><i class="bi bi-twitter-x"></i></a>
-                        <a href=""><i class="bi bi-facebook"></i></a>
-                        <a href=""><i class="bi bi-instagram"></i></a>
-                        <a href=""><i class="bi bi-linkedin"></i></a>
+                        <a href="github.com/harmonicnauts/"><i class="bi bi-github"></i></a>
+                        <a href="https://www.instagram.com/nst.rachmat/"><i class="bi bi-instagram"></i></a>
+                        <a href="https://www.linkedin.com/in/rachmat-nasution"><i class="bi bi-linkedin"></i></a>
                     </div>
                 </div>
             </div>
