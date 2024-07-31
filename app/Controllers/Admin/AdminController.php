@@ -178,7 +178,7 @@ class AdminController extends BaseController {
             }
             $this->packageModel->updatePackage($id, $data);
 
-            return redirect()->to(base_url('/admin/packages'))->with('success', 'Package added successfully');;
+            return redirect()->to(base_url('/admin/packages'))->with('success', 'Package updated successfully');;
         }
     }
 
