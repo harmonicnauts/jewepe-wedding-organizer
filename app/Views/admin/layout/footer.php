@@ -17,7 +17,7 @@
     $(document).ready(function() {
         $('#summernote').summernote({
             tabsize: 2,
-            height: 120,
+            height: 250,
             toolbar: [
                 ['style', ['style']],
                 ['font', ['bold', 'underline', 'clear']],
@@ -28,7 +28,6 @@
                 ['view', ['fullscreen', 'codeview', 'help']]
             ]
         });
-        $('#summernote').summernote('code', document.getElementById("summernote").value);
     })
 
     // Datatable code
