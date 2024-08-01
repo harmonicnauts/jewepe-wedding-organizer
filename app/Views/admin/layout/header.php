@@ -36,6 +36,18 @@
     <link rel="stylesheet" href="<?= $assets_dir ?>plugins/summernote/summernote-lite.min.css">
     <!-- Toastr -->
     <link rel="stylesheet" href="<?= $assets_dir ?>plugins/toastr/toastr.min.css">
+    <style>
+        @media print {
+            @page {
+                size: landscape;
+            }
+
+            .invoice {
+                margin: 0;
+                padding: 0;
+            }
+        }
+    </style>
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">

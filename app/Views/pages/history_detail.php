@@ -84,7 +84,7 @@
             </div>
             <!-- /.col -->
             <div class="col-6">
-                <p class="lead">Amount Due 2/22/2014</p>
+                <p class="lead text-red">Amount Due <?= date('d/m/Y', strtotime('+2 days')); ?></p>
 
                 <div class="table-responsive">
                     <table class="table">
