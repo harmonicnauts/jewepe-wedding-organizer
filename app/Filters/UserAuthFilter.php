@@ -10,11 +10,7 @@ class UserAuthFilter implements FilterInterface {
     public function before(RequestInterface $request, $arguments = null) {
         $session = session();
         if (!$session->get('isLoggedIn')) {
-            return redirect()->to(base_url('/login'));
-        }
-
-        if ($session->get('role') !== 'user') {
-            return redirect()->to(base_url('/login'));
+            return redirect()->to(base_url('/login'))->with('error', 'Access Denied, Please Login First!');
         }
     }
 

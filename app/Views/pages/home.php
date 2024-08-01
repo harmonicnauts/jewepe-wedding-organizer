@@ -11,7 +11,7 @@
                 <h2><span>Welcome to </span><span class="accent">Jewepe Wedding Organizer</span></h2>
                 <p>We specialize in turning your wedding dreams into a flawless reality. From intimate gatherings to grand celebrations, our experienced team of wedding organizers is dedicated to crafting unforgettable moments that reflect your unique style and love story.</p>
                 <div class="d-flex">
-                    <a href="#stats" class="btn-get-started">Get Started</a>
+                    <a href="#" class="btn-get-started">Get Started</a>
                 </div>
             </div>
         </div>

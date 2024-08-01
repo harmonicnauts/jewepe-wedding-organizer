@@ -60,7 +60,7 @@
                         </div>
                     </div>
                     <hr>
-                    <form action="<?= site_url('order/' . $package['package_id']) ?>" method="post">
+                    <form action="<?= site_url('user/order/' . $package['package_id']) ?>" method="post">
                         <?= csrf_field() ?>
                         <div class="mb-4">
                             <label for="date" class="form-label">Event Date</label>

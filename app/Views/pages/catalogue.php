@@ -20,12 +20,12 @@
                     <?php foreach ($packages as $package) : ?>
                         <div class="col-xxl-4 col-xl-6 col-lg-12">
                             <div class="card mb-4 mb-xl-0 card-hover border">
-                                <a href="<?= base_url('order/') ?><?= $package['package_id'] ?>">
+                                <a href="<?= base_url('user/order/') ?><?= $package['package_id'] ?>">
                                     <img src="<?= base_url("uploads/package/{$package['image']}") ?>" alt="package-image" class="img-fluid w-100 rounded-top-3">
                                 </a>
                                 <div class="card-body">
                                     <h3 class="mb-4 text-truncate">
-                                        <a href="<?= base_url('order/') ?><?= $package['package_id'] ?>" class="text-inherit "><?= $package['name'] ?></a>
+                                        <a href="<?= base_url('user/order/') ?><?= $package['package_id'] ?>" class="text-inherit "><?= $package['name'] ?></a>
                                     </h3>
                                     <div class="mb-4">
                                         <div class="mb-3 lh-1">
@@ -49,7 +49,7 @@
                                     </div>
                                     <div>
                                         <?php if (session()->get('isLoggedIn')) : ?>
-                                            <a href="<?= base_url('order/') ?><?= $package['package_id'] ?>" class="btn btn-success">Order this package</a>
+                                            <a href="<?= base_url('user/order/') ?><?= $package['package_id'] ?>" class="btn btn-success">Order this package</a>
                                         <?php else : ?>
                                             <div class="btn-danger">Please login to order this package</div>
                                         <?php endif; ?>

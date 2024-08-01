@@ -31,7 +31,7 @@
                             <?= session()->get('name') ?>
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="userDropdown">
-                            <li><a class="dropdown-item" href="<?= base_url('history/') ?><?= session()->get('user_id') ?>">Show Orders</a></li>
+                            <li><a class="dropdown-item" href="<?= base_url('user/history/') ?><?= session()->get('user_id') ?>">Show Orders</a></li>
                             <li><a class="dropdown-item" href="<?= base_url('auth/logout') ?>">Logout</a></li>
                         </ul>
                     </li>
