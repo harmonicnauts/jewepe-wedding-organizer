@@ -20,7 +20,7 @@
                     </div>
 
                     <div class="mt-4" id="detail">
-                        <h2 class="mb-3">Detail</h2>
+                        <h2 class="mb-3">Details</h2>
                         <div>
                             <p>
                                 <?= $package['description'] ?>
@@ -39,12 +39,12 @@
             <div class="card mb-3">
                 <div class="card-body">
                     <div class="mb-4">
-                        <h2 class="mb-3">Detail</h2>
+                        <h2 class="mb-3">Details</h2>
                     </div>
 
                     <div class="mb-4">
                         <div class="d-flex justify-content-between align-items-center">
-                            <p class="mb-0">Harga</p>
+                            <p class="mb-0">Price</p>
                             <div>
                                 <span>IDR <?= number_format($package['price'], 0, ',', '.') ?></span>
                             </div>
@@ -55,7 +55,7 @@
 
                     <div class="mb-4">
                         <div class="d-flex justify-content-between align-items-center">
-                            <p class="mb-0">Kapasitas</p>
+                            <p class="mb-0">Capacity</p>
                             <span class="font-weight-bold"><?= $package['capacity'] ?> pax</span>
                         </div>
                     </div>
@@ -68,7 +68,7 @@
                         </div>
                         <div>
                             <button type="submit" class="btn btn-success btn-block">
-                                Pesan Sekarang
+                                Order
                             </button>
                         </div>
                     </form>
