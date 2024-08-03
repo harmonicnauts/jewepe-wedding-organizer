@@ -37,6 +37,20 @@
                             <input type="text" class="form-control form-control-border <?= ($validation->hasError('price')) ? 'is-invalid' : '' ?>" value="<?= isset($data['package']['price']) ? $data['package']['price'] : '' ?>" name="price" id="price" placeholder="Enter the price">
                         </div>
                         <div class="form-group">
+                            <label for="price">Capacity</label>
+                            <input type="text" class="form-control form-control-border <?= ($validation->hasError('capacity')) ? 'is-invalid' : '' ?>" value="<?= isset($data['package']['capacity']) ? $data['package']['capacity'] : '' ?>" name=" capacity" id="capacity" placeholder="Enter the capacity">
+                            <div class="invalid-feedback">
+                                <?= $validation->getError('capacity'); ?>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="name">Location</label>
+                            <input type="text" class="form-control form-control-border <?= ($validation->hasError('location')) ? 'is-invalid' : '' ?>" value="<?= isset($data['package']['location']) ? $data['package']['location'] : '' ?>" name=" location" id="location" placeholder="Enter the location">
+                            <div class="invalid-feedback">
+                                <?= $validation->getError('location'); ?>
+                            </div>
+                        </div>
+                        <div class="form-group">
                             <label for="description">Description</label>
                             <textarea type="text" class="form-control form-control-border <?= ($validation->hasError('description')) ? 'is-invalid' : '' ?>" name="description" id="summernote" placeholder="Enter the description">
                                 <?= isset($data['package']['description']) ? $data['package']['description'] : '' ?>

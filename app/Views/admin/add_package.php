@@ -42,6 +42,20 @@
                             </div>
                         </div>
                         <div class="form-group">
+                            <label for="capacity">Capacity</label>
+                            <input type="text" class="form-control form-control-border <?= ($validation->hasError('capacity')) ? 'is-invalid' : '' ?>" name=" capacity" id="capacity" placeholder="Enter the capacity">
+                            <div class="invalid-feedback">
+                                <?= $validation->getError('capacity'); ?>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="name">Location</label>
+                            <input type="text" class="form-control form-control-border <?= ($validation->hasError('location')) ? 'is-invalid' : '' ?>" name=" location" id="location" placeholder="Enter the location">
+                            <div class="invalid-feedback">
+                                <?= $validation->getError('location'); ?>
+                            </div>
+                        </div>
+                        <div class="form-group">
                             <label for="description">Description</label>
                             <textarea class="form-control form-control-border <?= ($validation->hasError('description')) ? 'is-invalid' : '' ?>" name=" description" id="summernote"></textarea>
                             <div class="invalid-feedback">
