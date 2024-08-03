@@ -33,9 +33,11 @@
                                     <td><?= esc($order['updated_at']) ?></td>
                                     <td>
                                         <div class="btn-group d-flex justify-content-center">
+                                            <?php if ($order['status'] !== 'rejected' && $order['status'] !== 'request'):?>
                                             <form action="<?= base_url('user/history-detail/') ?><?= esc($order['order_id']) ?>" method="GET" style="display: inline;">
                                                 <button type="submit" class="btn mx-2 btn-light">Show Receipt</button>
                                             </form>
+                                            <?php endif;?>
                                         </div>
                                     </td>
                                 </tr>
