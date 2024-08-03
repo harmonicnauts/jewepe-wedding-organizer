@@ -31,7 +31,7 @@ class UserController extends BaseController {
 
         $this->orderModel->insert($data);
 
-        return redirect()->to(base_url('catalogue'));
+        return redirect()->to(base_url('catalogue'))->with('success', 'Order Added Successfully');
     }
 
 

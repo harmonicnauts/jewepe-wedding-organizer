@@ -34,6 +34,10 @@ class AuthController extends BaseController {
                 'isLoggedIn' => true,
             ];
             $session->set($sessionData);
+
+            if ($user['role'] == 'admin') {
+                return redirect()->to(base_url('/admin/dashboard'))->with('success', 'Logged in!');
+            }
             return redirect()->to(base_url('/'))->with('success', 'Logged in!');
         } else {
             return redirect()->to(base_url('/login'))->with('error', 'Invalid email or password');
