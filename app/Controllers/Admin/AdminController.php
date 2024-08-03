@@ -130,6 +130,8 @@ class AdminController extends BaseController {
                 'name' => $this->request->getVar('name'),
                 'description' => $this->request->getVar('description'),
                 'price' => $this->request->getVar('price'),
+                'capacity' => $this->request->getVar('capacity'),
+                'location' => $this->request->getVar('location'),
                 'image' => $img_name,
             ];
             $this->packageModel->addPackage($data);
@@ -166,12 +168,16 @@ class AdminController extends BaseController {
                     'name' => $this->request->getVar('name'),
                     'description' => $this->request->getVar('description'),
                     'price' => $this->request->getVar('price'),
+                    'capacity' => $this->request->getVar('capacity'),
+                    'location' => $this->request->getVar('location'),
                     'image' => $newName,
                 ];
             } else {
                 $data = [
                     'name' => $this->request->getVar('name'),
                     'description' => $this->request->getVar('description'),
+                    'capacity' => $this->request->getVar('capacity'),
+                    'location' => $this->request->getVar('location'),
                     'price' => $this->request->getVar('price'),
                     'image' => $data['package']['image']
                 ];
@@ -207,6 +213,19 @@ class AdminController extends BaseController {
             $order = $this->orderModel->getOrder($orderId);
             if ($order) {
                 $newStatus = ($order['status'] == 'approved') ? 'request' : 'approved';
+
+                $this->orderModel->update($orderId, ['status' => $newStatus]);
+            }
+        }
+
+        return redirect()->to('/admin/orders');
+    }
+
+    public function rejectOrder($orderId) {
+        if ($this->request->getMethod(true) === 'PUT') {
+            $order = $this->orderModel->getOrder($orderId);
+            if ($order) {
+                $newStatus = ($order['status'] == 'rejected') ? 'request' : 'rejected';
 
                 $this->orderModel->update($orderId, ['status' => $newStatus]);
             }

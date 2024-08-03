@@ -45,6 +45,7 @@ $routes->group('admin', ['filter' => 'adminauth', 'namespace' => 'App\Controller
 
     $routes->get('orders', 'AdminController::orders');
     $routes->put('changeorderstatus/(:num)', 'AdminController::changeOrderStatus/$1');
+    $routes->put('rejectorder/(:num)', 'AdminController::rejectOrder/$1');
     $routes->put('deleteorder/(:num)', 'AdminController::deleteOrder/$1');
 
     $routes->get('profile', 'AdminController::profile');

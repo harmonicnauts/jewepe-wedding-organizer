@@ -54,12 +54,24 @@
                                             <td><?= esc($order['updated_at']) ?></td>
                                             <td>
                                                 <div class="btn-group d-flex justify-content-center">
+                                                    <!-- ChangeOrderBtn -->
                                                     <form action="/admin/changeorderstatus/<?= esc($order['order_id']) ?>" method="POST" style="display: inline;">
                                                         <input type="hidden" name="_method" value="PUT">
-                                                        <button type="submit" class="btn mx-2 <?= esc($order['status']) == 'approved' ? 'btn-danger' : 'btn-primary' ?>">
-                                                            <?= esc($order['status']) == 'approved' ? '<i class="fas fa-thumbs-down"></i>' : '<i class="fas fa-thumbs-up"></i>' ?>
+                                                        <?php if ($order['status'] !== 'rejected'): ?>
+                                                        <button type="submit" class="btn mx-2 <?= esc($order['status']) == 'approved' ? 'btn-primary' : 'btn-success' ?>">
+                                                        <!-- <?= esc($order['status']) == 'approved' ? '<i class="fas fa-thumbs-down"></i>' : '<i class="fas fa-thumbs-up"></i>' ?> -->
+                                                            <?= esc($order['status']) == 'approved' ? 'Unapprove' : 'Approve</i>' ?>
+                                                        </button>
+                                                        <?php endif; ?>
+                                                    </form>
+                                                    <!-- RejectOrderBtn -->
+                                                    <form action="/admin/rejectorder/<?= esc($order['order_id']) ?>" method="POST" style="display: inline;">
+                                                        <input type="hidden" name="_method" value="PUT">
+                                                        <button type="submit" class="btn mx-2 btn-danger">
+                                                            <?= esc($order['status']) == 'rejected' ? 'Unreject' : 'Reject' ?>
                                                         </button>
                                                     </form>
+                                                    <!-- DeleteOrderBtn -->
                                                     <form action="/admin/deleteorder/<?= esc($order['order_id']) ?>" method="POST" style="display: inline;" onsubmit="return confirm('Are you sure you want to delete this order?');">
                                                         <input type="hidden" name="_method" value="PUT">
                                                         <button type="submit" class="btn mx-2 btn-danger"><i class="fas fa-trash"></i></button>
